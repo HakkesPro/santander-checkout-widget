@@ -1,9 +1,10 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import type { ThunkAction, Action } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import contextReducer from './contextReducer';
 
 export const store = configureStore({
   reducer: {
-    counter: contextReducer,
+    context: contextReducer,
   },
 });
 

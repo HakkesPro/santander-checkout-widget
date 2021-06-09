@@ -1,21 +1,33 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import type { Config, Theme } from 'types/global-types';
+import { initialConfig, initialTheme } from './initialStates';
 
 export interface InitialState {
-  value: number;
-  status: 'idle' | 'loading' | 'failed';
+  config: Config,
+  theme: Theme
 }
 
 const initialState: InitialState = {
-  value: 0,
-  status: 'idle',
+  config: initialConfig(),
+  theme: initialTheme(),
 };
 
 export const contextSlice = createSlice({
   name: 'Context',
   initialState,
   reducers: {
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
+    setConfig: (state, action: PayloadAction<Partial<Config>>) => {
+      state.config = {
+        ...state.config,
+        ...action.payload,
+      };
+    },
+    setTheme: (state, action: PayloadAction<Partial<Theme>>) => {
+      state.theme = {
+        ...state.theme,
+        ...action.payload,
+      };
     },
   },
 });
