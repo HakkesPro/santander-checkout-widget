@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppRoutes from 'components/AppRoutes';
-import { getConfigFromUrl } from 'utils/helpers';
+import { getConfigFromUrl, getThemeFromUrl } from 'utils/helpers';
 import { useAppDispatch } from 'redux/redux-hooks';
 import actions from 'redux/actions';
 import './styles/App.scss';
@@ -12,6 +12,7 @@ const App: FC = () => {
 
   // Update redux with new configs from url params
   dispatch(actions.setConfig(getConfigFromUrl()));
+  dispatch(actions.setTheme(getThemeFromUrl()));
 
   return (
     <Router>
