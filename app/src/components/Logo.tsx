@@ -4,7 +4,7 @@ import { useAppSelector } from 'redux/redux-hooks';
 
 const Logo:FC = () => {
   const logoUrl: string = useAppSelector(({ context }) => context.config.logoUrl);
-  const logoHeight: string = useAppSelector(({ context }) => context.theme.logoHeight);
+  const logoHeight: string = useAppSelector(({ context }) => context.config.logoHeight);
 
   return (
     <Image

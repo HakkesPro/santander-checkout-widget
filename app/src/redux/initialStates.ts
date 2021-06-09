@@ -8,6 +8,7 @@ export const initialConfig = () => ({
   displayLogo: true,
   // eslint-disable-next-line max-len
   logoUrl: 'https://d2o7rqynhxcgmp.cloudfront.net/uploads/images/footer/Sweden/Bambora-footer.svg',
+  logoHeight: '30px',
   localeId: LocaleIds.SV_SE,
   containerWidth: Measures.WIDTH,
   containerHeight: Measures.HEIGHT,
@@ -17,5 +18,4 @@ export const initialTheme = () => ({
   background: '#f8f8f8',
   border: '#777777',
   text: '#333333',
-  logoHeight: '30px',
 });

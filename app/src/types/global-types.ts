@@ -19,6 +19,7 @@ export interface Config {
   headingFontSize: string,
   displayLogo: boolean,
   logoUrl: string,
+  logoHeight: string,
   localeId: LocaleIds,
   containerWidth: number | string,
   containerHeight: number | string
@@ -27,8 +28,7 @@ export interface Config {
 export interface Theme {
   background: string,
   border: string,
-  text: string,
-  logoHeight: string
+  text: string
 }
 
 export enum Paths {
