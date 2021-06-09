@@ -5,12 +5,32 @@ module.exports = {
     browser: true,
     es2021: true,
   },
+  parser: '@typescript-eslint/parser',
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'], // Your TypeScript files extension
+      parserOptions: {
+        project: ['./tsconfig.json'], // Specify it only for TypeScript files
+      },
+    }
+  ],
   extends: [
     'plugin:react/recommended',
     'airbnb',
-    'plugin:@typescript-eslint/recommended',
   ],
-  parser: '@typescript-eslint/parser',
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+        extensions: [
+          '.ts',
+          '.tsx',
+          '.js',
+          '.jsx',
+        ],
+      },
+    },
+  },
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -23,12 +43,27 @@ module.exports = {
     '@typescript-eslint',
     'react-hooks',
   ],
+  globals: {
+    JSX: true,
+  },
   rules: {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     'react/jsx-filename-extension': ['warn', { extensions: ['.tsx'] }],
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': ['error'],
+
+    // Prevent boolean variables without prefix
+    '@typescript-eslint/naming-convention': [
+      errorLevel,
+      {
+        selector: 'variable',
+        types: ['boolean'],
+        format: ['PascalCase'],
+        prefix: ['is', 'has', 'should'],
+      },
+    ],
+
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -48,11 +83,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/consistent-type-imports': 'warn',
     'no-debugger': errorLevel,
-    'parser': 'babel-eslint',
-  },
-  settings: {
-    'import/resolver': {
-      typescript: {},
-    },
+    'no-unused-vars': 'warn',
+    'consistent-return': 'off',
   },
 };

@@ -7,14 +7,14 @@ import {
 import Config from 'pages/Config';
 import Classic from 'pages/Classic';
 import Modern from 'pages/Modern';
-import { Paths } from 'types/global-types';
+import { Paths, DisplayMode } from 'types/global-types';
 import { useAppSelector } from 'redux/redux-hooks';
 
 const AppRoutes: FC = (): JSX.Element => {
   const history:any = useHistory();
-  const config = useAppSelector(({ context }) => context.config);
+  const displayMode: DisplayMode = useAppSelector(({ context }) => context.config.displayMode);
 
-  setPath(history, config);
+  initRoutePush(history, displayMode);
 
   return (
     <Switch>
@@ -25,9 +25,19 @@ const AppRoutes: FC = (): JSX.Element => {
   );
 };
 
-const setPath = (history: any, config: any) => {
-  debugger;
-  const currentPath = history.location.pathname;
+const initRoutePush = (history: any, displayMode: DisplayMode): void | null => {
+  const isConfigPath: boolean = history.location.pathname === Paths.CONFIG;
+  if (isConfigPath) return null;
+
+  switch (displayMode) {
+    case DisplayMode.MODERN:
+      history.push(Paths.MODERN);
+      break;
+    case DisplayMode.CLASSIC:
+    default:
+      history.push(Paths.CLASSIC);
+      break;
+  }
 };
 
 export default AppRoutes;

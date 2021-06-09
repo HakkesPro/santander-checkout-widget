@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: "off" */
+
 export interface Heading {
   text: string,
   fontSize: number | string
