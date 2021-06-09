@@ -10,7 +10,7 @@ import './styles/App.scss';
 const App: FC = () => {
   const dispatch = useAppDispatch();
 
-  // Update redux with new configs from url params
+  // Update redux with new configs from url params, theme and config
   dispatch(actions.setConfig(getConfigFromUrl()));
   dispatch(actions.setTheme(getThemeFromUrl()));
 
