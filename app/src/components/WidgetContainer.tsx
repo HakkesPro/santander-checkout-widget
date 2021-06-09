@@ -1,11 +1,10 @@
 import type { FC, ReactNode } from 'react';
-import { Measures } from 'types/global-types';
 import { useAppSelector } from 'redux/redux-hooks';
-import type { Theme } from 'types/global-types';
+import type { Theme, Config } from 'types/global-types';
 
-const sectionStyles = (theme: Theme) => ({
-  maxHeight: Measures.HEIGHT,
-  maxWidth: Measures.WIDTH,
+const sectionStyles = (theme: Theme, config: Config) => ({
+  maxHeight: config.containerHeight,
+  maxWidth: config.containerWidth,
   height: '100vh',
   width: '100vw',
   border: '1px solid',
@@ -22,9 +21,10 @@ interface Props {
 
 const WidgetContainer: FC<Props> = ({ children }) => {
   const theme: Theme = useAppSelector(({ context }) => context.theme);
+  const config: Config = useAppSelector(({ context }) => context.config);
 
   return (
-    <section style={sectionStyles(theme)}>
+    <section style={sectionStyles(theme, config)}>
       { children }
     </section>
   );
