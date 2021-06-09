@@ -1,8 +1,11 @@
-const Modern = () => {
-  const txt = 'Modern page';
-  return (
-    <h1>{txt}</h1>
-  );
-};
+import type { FC } from 'react';
+import WidgetContainer from 'components/WidgetContainer';
+import Content from 'components/Modern/Content';
+
+const Modern:FC = () => (
+  <WidgetContainer>
+    <Content />
+  </WidgetContainer>
+);
 
 export default Modern;

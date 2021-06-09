@@ -1,21 +1,21 @@
-import { LocaleIds, DisplayMode } from 'types/global-types';
+import { LocaleIds, DisplayMode, Measures } from 'types/global-types';
 
 export const initialConfig = () => ({
-  displayMode: DisplayMode.CLASSIC,
+  displayMode: DisplayMode.MODERN,
   font: 'arial',
-  heading: {
-    text: 'Delbetalning väljs i kassan',
-    fontSize: '14px',
-  },
+  headingText: 'Delbetalning väljs i kassan',
+  headingFontSize: '14px',
   displayLogo: true,
-  logoUrl: 'https://static.paymentiq.io/Bambora-Logo.png',
+  // eslint-disable-next-line max-len
+  logoUrl: 'https://d2o7rqynhxcgmp.cloudfront.net/uploads/images/footer/Sweden/Bambora-footer.svg',
   localeId: LocaleIds.SV_SE,
-  containerWidth: '500px',
-  containerHeight: '350px',
+  containerWidth: Measures.WIDTH,
+  containerHeight: Measures.HEIGHT,
 });
 
 export const initialTheme = () => ({
-  background: '#ffffff',
-  border: '#f1f1f1',
+  background: '#f8f8f8',
+  border: '#777777',
   text: '#333333',
+  logoHeight: '30px',
 });

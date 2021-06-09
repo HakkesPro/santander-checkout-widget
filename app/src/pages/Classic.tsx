@@ -1,7 +1,12 @@
-const Classic = () => {
+import type { FC } from 'react';
+import WidgetContainer from 'components/WidgetContainer';
+
+const Classic:FC = () => {
   const txt = 'Classic page';
   return (
-    <h1>{txt}</h1>
+    <WidgetContainer>
+      <h1>{txt}</h1>
+    </WidgetContainer>
   );
 };
 

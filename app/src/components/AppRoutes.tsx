@@ -29,13 +29,15 @@ const initRoutePush = (history: any, displayMode: DisplayMode): void | null => {
   const isConfigPath: boolean = history.location.pathname === Paths.CONFIG;
   if (isConfigPath) return null;
 
+  const historyPush = (path: string) => history.push(path + history.location.search);
+
   switch (displayMode) {
     case DisplayMode.MODERN:
-      history.push(Paths.MODERN);
+      historyPush(Paths.MODERN);
       break;
     case DisplayMode.CLASSIC:
     default:
-      history.push(Paths.CLASSIC);
+      historyPush(Paths.CLASSIC);
       break;
   }
 };

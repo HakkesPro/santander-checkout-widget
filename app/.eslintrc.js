@@ -85,5 +85,8 @@ module.exports = {
     'no-debugger': errorLevel,
     'no-unused-vars': 'warn',
     'consistent-return': 'off',
+    'arrow-body-style': 'warn',
+    'semi': 'warn',
+    'implicit-arrow-linebreak': 'off',
   },
 };
