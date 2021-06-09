@@ -24,7 +24,7 @@ const WidgetContainer: FC<Props> = ({ children }) => {
   const config: Config = useAppSelector(({ context }) => context.config);
 
   return (
-    <section style={sectionStyles(theme, config)}>
+    <section id="widget-container" style={sectionStyles(theme, config)}>
       { children }
     </section>
   );
