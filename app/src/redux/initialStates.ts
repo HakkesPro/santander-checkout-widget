@@ -30,8 +30,8 @@ export const initTranslations = () => ({
 });
 
 export const intialAmountOptions = (): Array<AmountOption> => ([
-  { key: 'angular', text: '2 4999', value: 'angular' },
-  { key: 'css', text: 'CSS', value: 'css' },
-  { key: 'design', text: 'Graphic Design', value: 'design' },
-  { key: 'ember', text: 'Ember', value: 'ember' },
+  { key: 2499, text: '2 499', value: 2499 },
+  { key: 1999, text: ' 1 999', value: 1999 },
+  { key: 1499, text: '1 499', value: 1499 },
+  { key: 1299, text: '1 299', value: 1299 },
 ]);

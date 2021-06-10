@@ -52,9 +52,9 @@ export enum Measures {
 }
 
 export interface AmountOption {
-  key: string,
+  key: number,
   text: string,
-  value: string
+  value: number
 }
 
 export interface PaymentDetailsState {
