@@ -18,20 +18,12 @@ const urlTheme: ThemeParams = getThemeFromUrl();
 
 const App: FC = () => {
   const dispatch: AppDispatch = useAppDispatch();
+  const defaultLocaleId: LocaleIds = useAppSelector(({ context }) => context.config.defaultLocaleId);
 
-  /**
-   * @constant { string } localeId in store only serves as a
-   * default locale if no localeId is set, it never gets updated in store.
-   * Faced some re-render issues here
-   * localeId and translations is set from either default
-    * localeId or from passed in locale here at initial load.
-   */
-  const localeId: LocaleIds = useAppSelector(({ context }) => context.config.localeId);
-
-  // Update redux with new configs from url params, theme and config
   useEffect(() => {
-    setStore(dispatch, localeId);
-  }, [dispatch, localeId]);
+    // Update redux with new configs from url params, theme and config
+    setStore(dispatch, defaultLocaleId);
+  }, [dispatch, defaultLocaleId]);
 
   return (
     <Router>
@@ -42,15 +34,9 @@ const App: FC = () => {
 
 // App helpers
 type SetStore = (d: AppDispatch, l: LocaleIds) => void
-const setStore: SetStore = (dispatch, localeId) => {
-  const urlLocaleId: Partial<Record<'localeId', LocaleIds>> = {
-    ...urlConfig.localeId && { localeId: urlConfig.localeId },
-  };
-
-  delete urlConfig.localeId;
-
+const setStore: SetStore = (dispatch, defaultLocaleId) => {
   setUrlConfigs(dispatch);
-  setTranslations(dispatch, urlLocaleId.localeId, localeId);
+  setTranslations(dispatch, urlConfig.localeId, defaultLocaleId);
 };
 
 type SetConfigsFromUrl = (d: AppDispatch) => void
@@ -60,8 +46,8 @@ const setUrlConfigs: SetConfigsFromUrl = (dispatch) => {
 };
 
 type SetTranslations = (d: AppDispatch, u: undefined | LocaleIds, s: LocaleIds) => void
-const setTranslations: SetTranslations = (dispatch, urlLocaleId, storeLocaleId) => {
-  const localeId: LocaleIds = urlLocaleId || storeLocaleId;
+const setTranslations: SetTranslations = (dispatch, urlLocaleId, defaultLocaleId) => {
+  const localeId: LocaleIds = urlLocaleId || defaultLocaleId;
   dispatch(contextActions.setTranslations(translations[localeId]));
 };
 

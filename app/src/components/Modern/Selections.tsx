@@ -2,16 +2,26 @@ import type { FC } from 'react';
 import { Grid, Input, Dropdown } from 'semantic-ui-react';
 import { useAppSelector } from 'redux/redux-hooks';
 import type { Translations, Theme, PaymentDetailsState } from 'types/global-types';
+import { amountWithCode } from 'utils/helpers';
 
-const Selections:FC = () => {
+interface Props {
+  translations: Translations,
+  theme: Theme,
+  localeId: string
+}
+
+const Selections:FC<Props> = ({ translations, theme, localeId }) => {
   const paymentContext: PaymentDetailsState = useAppSelector(({ paymentDetails }) => paymentDetails);
-  const translations: Translations = useAppSelector(({ context }) => context.translations);
-  const theme: Theme = useAppSelector(({ context }) => context.theme);
 
   const { months, amountOptions } = paymentContext;
 
   const monthsAliasSplit = translations.monthsAlias.split('');
   const monthsAlias = monthsAliasSplit[0].toUpperCase() + monthsAliasSplit.splice(1).join('');
+
+  const amountOptionsFixed = amountOptions.map((option) => ({
+    ...option,
+    text: amountWithCode(localeId, translations.currencyCode, option.value),
+  }));
 
   createStyleTag(theme.borderRadius);
 
@@ -31,7 +41,7 @@ const Selections:FC = () => {
           placeholder={translations.monthlyAmount}
           fluid
           selection
-          options={amountOptions}
+          options={amountOptionsFixed}
         />
       </Grid.Column>
     </Grid.Row>

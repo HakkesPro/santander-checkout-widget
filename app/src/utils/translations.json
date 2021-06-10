@@ -4,27 +4,43 @@
     "footer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi",
     "months": "månader",
     "monthsAlias": "mnd",
-    "monthlyAmount": "Månadsbelopp"
+    "monthlyAmount": "Månadsbelopp",
+    "effectiveInterestRate": "Effektiv ränta",
+    "inTotal": "Totalt",
+    "cost": "Kostnad",
+    "currencyCode": "SEK"
   },
   "no_NO": {
     "header": "Delbetaling velges i kassen",
     "footer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi",
     "months": "måneder",
     "monthsAlias": "mnd",
-    "monthlyAmount": "Månedlig beløp"
+    "monthlyAmount": "Månedlig beløp",
+    "effectiveInterestRate": "Effektiv rente",
+    "inTotal": "Totalt",
+    "cost": "Koste",
+    "currencyCode": "NOK"
   },
   "da_DK": {
     "header": "Delvis betaling vælges ved kassen",
     "footer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi",
     "months": "måneder",
     "monthsAlias": "mnd",
-    "monthlyAmount": "Månedligt beløb"
+    "monthlyAmount": "Månedligt beløb",
+    "effectiveInterestRate": "Effektiv rente",
+    "inTotal": "I alt",
+    "cost": "Koste",
+    "currencyCode": "DKK"
   },
   "en_GB": {
     "header": "Partial payment is selected at checkout",
     "footer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi",
     "months": "months",
-    "monthsAlias": "mnt",
-    "monthlyAmount": "Monthly amount"
+    "monthsAlias": "mnh",
+    "monthlyAmount": "Monthly amount",
+    "effectiveInterestRate": "Effective interest rate",
+    "inTotal": "In total",
+    "cost": "Cost",
+    "currencyCode": "GBP"
   }
 }

@@ -5,7 +5,11 @@ export interface Translations {
   footer: string
   months: string,
   monthsAlias: string,
-  monthlyAmount: string
+  monthlyAmount: string,
+  effectiveInterestRate: string,
+  inTotal: string,
+  cost: string,
+  currencyCode: string
 }
 
 export enum LocaleIds {
@@ -28,6 +32,7 @@ export interface Config {
   logoUrl: string,
   logoHeight: string,
   localeId: LocaleIds,
+  defaultLocaleId: LocaleIds,
   containerWidth: number | string,
   containerHeight: number | string
 }

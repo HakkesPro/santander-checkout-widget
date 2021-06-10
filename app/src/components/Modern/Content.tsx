@@ -4,6 +4,7 @@ import { useAppSelector } from 'redux/redux-hooks';
 import type { Config, Theme, Translations } from 'types/global-types';
 import Header from './Header';
 import Selections from './Selections';
+import Footer from './Footer';
 
 const ClassicContent:FC = () => {
   const config: Config = useAppSelector(({ context }) => context.config);
@@ -21,15 +22,9 @@ const ClassicContent:FC = () => {
     >
       <Header header={translations.header} config={config} />
 
-      <Selections />
+      <Selections translations={translations} theme={theme} localeId={config.localeId} />
 
-      <Grid.Row columns={1} textAlign="left">
-        <Grid.Column>
-          <p style={{ fontSize: theme.footerFontSize }}>
-            { translations.footer }
-          </p>
-        </Grid.Column>
-      </Grid.Row>
+      <Footer translations={translations} theme={theme} />
 
     </Grid>
   );

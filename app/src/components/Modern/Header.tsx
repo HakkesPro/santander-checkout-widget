@@ -10,10 +10,10 @@ interface Props {
 
 const Header:FC<Props> = ({ config, header }) => {
   const { headerFontSize, displayLogo: shouldShowLogo } = config;
-  const isIntFont: boolean = typeof headerFontSize === 'number';
+  const isFontInt: boolean = typeof headerFontSize === 'number';
 
   const fontSize = {
-    fontSize: isIntFont ? `${headerFontSize}px` : headerFontSize,
+    fontSize: isFontInt ? `${headerFontSize}px` : headerFontSize,
   };
 
   return (

@@ -47,3 +47,10 @@ export const isIframed = () => {
     return false;
   }
 };
+
+export const amountWithCode = (localeId: string, currencyCode: string, amount: number) =>
+  new Intl.NumberFormat(
+    localeId.replace('_', '-'),
+    { style: 'currency', currency: currencyCode },
+  )
+    .format(amount);

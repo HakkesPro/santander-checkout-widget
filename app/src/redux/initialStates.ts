@@ -13,6 +13,7 @@ export const initialConfig = () => ({
   logoUrl: 'https://d2o7rqynhxcgmp.cloudfront.net/uploads/images/footer/Sweden/Bambora-footer.svg',
   logoHeight: '30px',
   localeId: defaultLocaleId,
+  defaultLocaleId, // Need this for some initial re-render issues
   containerWidth: Measures.WIDTH,
   containerHeight: Measures.HEIGHT,
 });
