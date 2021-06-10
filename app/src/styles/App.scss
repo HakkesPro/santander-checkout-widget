@@ -6,3 +6,7 @@
 #selections-modern-container .ui.disabled.input, .ui.input:not(.disabled) input[disabled] {
   opacity: 1;
 }
+#selections-modern-container .ui.corner.label {
+  width: 2.8em;
+  padding-top: 2px;
+}

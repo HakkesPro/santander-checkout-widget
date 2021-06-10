@@ -1,5 +1,6 @@
 import { LocaleIds, DisplayMode, Measures } from 'types/global-types';
 import translations from 'utils/translations.json';
+import type { AmountOption } from 'types/global-types';
 
 const defaultLocaleId = LocaleIds.SV_SE;
 
@@ -21,8 +22,16 @@ export const initialTheme = () => ({
   border: 'rgb(202 202 202)',
   text: '#333333',
   footerFontSize: '0.8rem',
+  borderRadius: '.28571429rem',
 });
 
 export const initTranslations = () => ({
   ...translations[defaultLocaleId],
 });
+
+export const intialAmountOptions = (): Array<AmountOption> => ([
+  { key: 'angular', text: '2 4999', value: 'angular' },
+  { key: 'css', text: 'CSS', value: 'css' },
+  { key: 'design', text: 'Graphic Design', value: 'design' },
+  { key: 'ember', text: 'Ember', value: 'ember' },
+]);

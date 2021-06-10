@@ -1,3 +1,7 @@
-import { contextActions } from './contextReducer';
+import { contextActions } from './reducers/context';
+import { paymentActions } from './reducers/paymentDetails';
 
-export default contextActions;
+export {
+  contextActions,
+  paymentActions,
+};

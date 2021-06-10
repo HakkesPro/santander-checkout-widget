@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import AppRoutes from 'components/AppRoutes';
 import { getConfigFromUrl, getThemeFromUrl } from 'utils/helpers';
 import { useAppDispatch, useAppSelector } from 'redux/redux-hooks';
-import actions from 'redux/actions';
+import { contextActions } from 'redux/actions';
 import translations from 'utils/translations.json';
 import type { AppDispatch } from 'redux/store';
 import type { Config, Theme, LocaleIds } from 'types/global-types';
@@ -55,14 +55,14 @@ const setStore: SetStore = (dispatch, localeId) => {
 
 type SetConfigsFromUrl = (d: AppDispatch) => void
 const setUrlConfigs: SetConfigsFromUrl = (dispatch) => {
-  dispatch(actions.setConfig(urlConfig));
-  dispatch(actions.setTheme(urlTheme));
+  dispatch(contextActions.setConfig(urlConfig));
+  dispatch(contextActions.setTheme(urlTheme));
 };
 
 type SetTranslations = (d: AppDispatch, u: undefined | LocaleIds, s: LocaleIds) => void
 const setTranslations: SetTranslations = (dispatch, urlLocaleId, storeLocaleId) => {
   const localeId: LocaleIds = urlLocaleId || storeLocaleId;
-  dispatch(actions.setTranslations(translations[localeId]));
+  dispatch(contextActions.setTranslations(translations[localeId]));
 };
 
 export default App;

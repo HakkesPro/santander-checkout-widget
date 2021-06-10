@@ -1,18 +1,30 @@
 {
   "sv_SE": {
     "header": "Delbetalning väljs i kassan",
-    "footer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi"
+    "footer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi",
+    "months": "månader",
+    "monthsAlias": "mnd",
+    "monthlyAmount": "Månadsbelopp"
   },
   "no_NO": {
     "header": "Delbetaling velges i kassen",
-    "footer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi"
+    "footer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi",
+    "months": "måneder",
+    "monthsAlias": "mnd",
+    "monthlyAmount": "Månedlig beløp"
   },
   "da_DK": {
     "header": "Delvis betaling vælges ved kassen",
-    "footer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi"
+    "footer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi",
+    "months": "måneder",
+    "monthsAlias": "mnd",
+    "monthlyAmount": "Månedligt beløb"
   },
   "en_GB": {
     "header": "Partial payment is selected at checkout",
-    "footer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi"
+    "footer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi",
+    "months": "months",
+    "monthsAlias": "mnt",
+    "monthlyAmount": "Monthly amount"
   }
 }

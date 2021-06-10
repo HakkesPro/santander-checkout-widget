@@ -1,10 +1,12 @@
 import type { ThunkAction, Action } from '@reduxjs/toolkit';
 import { configureStore } from '@reduxjs/toolkit';
-import contextReducer from './contextReducer';
+import context from './reducers/context';
+import paymentDetails from './reducers/paymentDetails';
 
 export const store = configureStore({
   reducer: {
-    context: contextReducer,
+    context,
+    paymentDetails,
   },
 });
 

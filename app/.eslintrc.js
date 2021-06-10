@@ -72,7 +72,7 @@ module.exports = {
         tsx: 'never',
       },
     ],
-    'max-len': ['warn', { code: 95 }],
+    'max-len': ['warn', { code: 110 }],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react/prop-types': 'off',

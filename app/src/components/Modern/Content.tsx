@@ -10,8 +10,6 @@ const ClassicContent:FC = () => {
   const theme: Theme = useAppSelector(({ context }) => context.theme);
   const translations: Translations = useAppSelector(({ context }) => context.translations);
 
-  // console.log(config);
-
   return (
     <Grid
       padded

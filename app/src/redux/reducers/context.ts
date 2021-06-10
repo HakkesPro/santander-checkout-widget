@@ -5,7 +5,7 @@ import type {
   Theme,
   Translations,
 } from 'types/global-types';
-import { initialConfig, initialTheme, initTranslations } from './initialStates';
+import { initialConfig, initialTheme, initTranslations } from '../initialStates';
 
 export interface InitialState {
   config: Config,

@@ -3,6 +3,9 @@
 export interface Translations {
   header: string,
   footer: string
+  months: string,
+  monthsAlias: string,
+  monthlyAmount: string
 }
 
 export enum LocaleIds {
@@ -33,7 +36,8 @@ export interface Theme {
   background: string,
   border: string,
   text: string,
-  footerFontSize: string
+  footerFontSize: string,
+  borderRadius: string
 }
 
 export enum Paths {
@@ -45,4 +49,15 @@ export enum Paths {
 export enum Measures {
   WIDTH = '650px',
   HEIGHT = '300px'
+}
+
+export interface AmountOption {
+  key: string,
+  text: string,
+  value: string
+}
+
+export interface PaymentDetailsState {
+  months: number
+  amountOptions: Array<AmountOption>
 }

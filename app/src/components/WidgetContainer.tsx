@@ -14,6 +14,7 @@ const sectionStyles = (theme: Theme, config: Config) => ({
   padding: '10px',
   background: theme.background,
   color: theme.text,
+  borderRadius: theme.borderRadius,
 });
 
 interface Props {

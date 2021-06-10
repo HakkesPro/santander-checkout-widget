@@ -1,37 +1,52 @@
 import type { FC } from 'react';
 import { Grid, Input, Dropdown } from 'semantic-ui-react';
+import { useAppSelector } from 'redux/redux-hooks';
+import type { Translations, Theme, PaymentDetailsState } from 'types/global-types';
 
 const Selections:FC = () => {
-  const txt = 'Selections page';
+  const paymentContext: PaymentDetailsState = useAppSelector(({ paymentDetails }) => paymentDetails);
+  const translations: Translations = useAppSelector(({ context }) => context.translations);
+  const theme: Theme = useAppSelector(({ context }) => context.theme);
+
+  const { months, amountOptions } = paymentContext;
+
+  const monthsAliasSplit = translations.monthsAlias.split('');
+  const monthsAlias = monthsAliasSplit[0].toUpperCase() + monthsAliasSplit.splice(1).join('');
+
+  createStyleTag(theme.borderRadius);
+
   return (
     <Grid.Row id="selections-modern-container" centered>
       <Grid.Column>
         <Input
-          placeholder="Add value"
-          label="Återbetalningstid"
           labelPosition="left corner"
+          label={monthsAlias}
           disabled
-          value="12 månader"
+          value={`${months} ${translations.months}`}
         />
       </Grid.Column>
       <Grid.Column>
         <Dropdown
           labeled
-          placeholder="Månadsbelopp"
+          placeholder={translations.monthlyAmount}
           fluid
           selection
-          options={options}
+          options={amountOptions}
         />
       </Grid.Column>
     </Grid.Row>
   );
 };
 
-const options = [
-  { key: 'angular', text: '2 4999', value: 'angular' },
-  { key: 'css', text: 'CSS', value: 'css' },
-  { key: 'design', text: 'Graphic Design', value: 'design' },
-  { key: 'ember', text: 'Ember', value: 'ember' },
-];
+const createStyleTag = (borderRadius: string) => {
+  const style = document.createElement('style');
+  style.innerText = `
+  .ui.input>input,
+  .ui.fluid.dropdown {
+    border-radius: ${borderRadius}!important;
+  }
+  `;
+  window.self.document.body.appendChild(style);
+};
 
 export default Selections;
