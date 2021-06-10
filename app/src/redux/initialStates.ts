@@ -1,8 +1,17 @@
-import { LocaleIds, DisplayMode, Measures } from 'types/global-types';
+import {
+  LocaleIds,
+  DisplayMode,
+  Measures,
+  Countries,
+} from 'types/global-types';
 import translations from 'utils/translations.json';
 import type { AmountOption } from 'types/global-types';
 
-const defaultLocaleId = LocaleIds.SV_SE;
+const defaults = {
+  // Sweden as default .. might change to other country
+  LOCALE_ID: LocaleIds.SV_SE,
+  COUNTRY: Countries.SWE,
+};
 
 export const initialConfig = () => ({
   displayMode: DisplayMode.MODERN,
@@ -12,10 +21,12 @@ export const initialConfig = () => ({
   // eslint-disable-next-line max-len
   logoUrl: 'https://d2o7rqynhxcgmp.cloudfront.net/uploads/images/footer/Sweden/Bambora-footer.svg',
   logoHeight: '30px',
-  localeId: defaultLocaleId,
-  defaultLocaleId, // Need this for some initial re-render issues
+  localeId: defaults.LOCALE_ID,
+  defaultLocaleId: defaults.LOCALE_ID, // Need this for some initial re-render issues
   containerWidth: Measures.WIDTH,
   containerHeight: Measures.HEIGHT,
+  effectiveInterestRate: 27.49,
+  country: defaults.COUNTRY,
 });
 
 export const initialTheme = () => ({
@@ -27,7 +38,7 @@ export const initialTheme = () => ({
 });
 
 export const initTranslations = () => ({
-  ...translations[defaultLocaleId],
+  ...translations[defaults.LOCALE_ID],
 });
 
 export const intialAmountOptions = (): Array<AmountOption> => ([

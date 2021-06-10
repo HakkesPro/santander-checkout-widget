@@ -1,19 +1,38 @@
 import type { FC } from 'react';
 import { Grid } from 'semantic-ui-react';
-import type { Theme, Translations } from 'types/global-types';
+import { useAppSelector } from 'redux/redux-hooks';
+import type { Theme, Translations, LocaleIds } from 'types/global-types';
+import { getCost } from 'utils/helpers';
 
 interface Props {
   translations: Translations,
-  theme: Theme
+  theme: Theme,
+  localeId: LocaleIds,
+  effectiveInterestRate: number
 }
 
-const Footer:FC<Props> = ({ translations, theme }): JSX.Element => {
-  const txt = 'Footer page';
+const Footer:FC<Props> = ({
+  translations,
+  theme,
+  localeId,
+  effectiveInterestRate,
+}): JSX.Element => {
+  const months: number = useAppSelector(({ paymentDetails }) => paymentDetails.months);
+
+  const cost = getCost({
+    localeId,
+    currencyCode: translations.currencyCode,
+    months,
+    effectiveInterestRate,
+  });
+
+  console.log(cost);
+
   return (
     <Grid.Row columns={1} textAlign="left">
       <Grid.Column>
         <p style={{ fontSize: theme.footerFontSize }}>
-          { translations.footer }
+          { translations.inTotal }: dsad
         </p>
       </Grid.Column>
     </Grid.Row>

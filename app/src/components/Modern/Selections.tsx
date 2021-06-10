@@ -1,26 +1,32 @@
 import type { FC } from 'react';
 import { Grid, Input, Dropdown } from 'semantic-ui-react';
 import { useAppSelector } from 'redux/redux-hooks';
-import type { Translations, Theme, PaymentDetailsState } from 'types/global-types';
-import { amountWithCode } from 'utils/helpers';
+import type {
+  Translations,
+  Theme,
+  PaymentDetailsState,
+  Config,
+} from 'types/global-types';
+import { amountWithCode, getCurrencyCodeByCountry } from 'utils/helpers';
 
 interface Props {
   translations: Translations,
   theme: Theme,
-  localeId: string
+  config: Config
 }
 
-const Selections:FC<Props> = ({ translations, theme, localeId }) => {
-  const paymentContext: PaymentDetailsState = useAppSelector(({ paymentDetails }) => paymentDetails);
+const Selections:FC<Props> = ({ translations, theme, config }) => {
+  const paymentCtx: PaymentDetailsState = useAppSelector(({ paymentDetails }) => paymentDetails);
 
-  const { months, amountOptions } = paymentContext;
+  const { localeId, country } = config;
+  const { months, amountOptions } = paymentCtx;
 
   const monthsAliasSplit = translations.monthsAlias.split('');
   const monthsAlias = monthsAliasSplit[0].toUpperCase() + monthsAliasSplit.splice(1).join('');
 
   const amountOptionsFixed = amountOptions.map((option) => ({
     ...option,
-    text: amountWithCode(localeId, translations.currencyCode, option.value),
+    text: amountWithCode(localeId, getCurrencyCodeByCountry(country), option.value),
   }));
 
   createStyleTag(theme.borderRadius);

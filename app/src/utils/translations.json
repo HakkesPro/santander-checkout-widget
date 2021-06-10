@@ -36,7 +36,7 @@
     "header": "Partial payment is selected at checkout",
     "footer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi",
     "months": "months",
-    "monthsAlias": "mnh",
+    "monthsAlias": "mht",
     "monthlyAmount": "Monthly amount",
     "effectiveInterestRate": "Effective interest rate",
     "inTotal": "In total",

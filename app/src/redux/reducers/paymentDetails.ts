@@ -6,6 +6,7 @@ import { intialAmountOptions } from '../initialStates';
 const initialState: PaymentDetailsState = {
   months: 12,
   amountOptions: intialAmountOptions(),
+  selectedAmount: null,
 };
 
 export const paymentSlice = createSlice({
@@ -17,6 +18,9 @@ export const paymentSlice = createSlice({
     },
     setAmountOptions: (state, action: PayloadAction<AmountOption[]>) => {
       state.amountOptions = action.payload;
+    },
+    setSelectedAmount: (state, action: PayloadAction<null | number>) => {
+      state.selectedAmount = action.payload;
     },
   },
 });

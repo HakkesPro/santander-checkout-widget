@@ -1,5 +1,6 @@
 import { initialConfig, initialTheme } from 'redux/initialStates';
-// import type { Config } from 'types/global-types';
+import { Countries, LocaleIds } from 'types/global-types';
+import translations from 'utils/translations.json';
 
 export const parseQueryString = (key: string): string | null =>
   new URL(window.location.href).searchParams.get(key);
@@ -54,3 +55,37 @@ export const amountWithCode = (localeId: string, currencyCode: string, amount: n
     { style: 'currency', currency: currencyCode },
   )
     .format(amount);
+
+type GetCost = ({
+  localeId,
+  currencyCode,
+  months,
+  effectiveInterestRate,
+}: {
+  localeId: LocaleIds
+  currencyCode: string,
+  months: number
+  effectiveInterestRate: number
+}) => void
+export const getCost: GetCost = ({
+  localeId,
+  currencyCode,
+  months,
+  effectiveInterestRate,
+}) => {
+  console.log('getCost triggered');
+};
+
+export const getCurrencyCodeByCountry = (country: Countries) => {
+  switch (country) {
+    case Countries.NOR:
+      return translations[LocaleIds.NO_NO].currencyCode;
+    case Countries.DNK:
+      return translations[LocaleIds.DA_DK].currencyCode;
+    case Countries.GBR:
+      return translations[LocaleIds.EN_GB].currencyCode;
+    case Countries.SWE:
+    default:
+      return translations[LocaleIds.SV_SE].currencyCode;
+  }
+};

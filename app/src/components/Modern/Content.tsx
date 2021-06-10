@@ -22,9 +22,14 @@ const ClassicContent:FC = () => {
     >
       <Header header={translations.header} config={config} />
 
-      <Selections translations={translations} theme={theme} localeId={config.localeId} />
+      <Selections translations={translations} theme={theme} config={config} />
 
-      <Footer translations={translations} theme={theme} />
+      <Footer
+        translations={translations}
+        theme={theme}
+        localeId={config.localeId}
+        effectiveInterestRate={config.effectiveInterestRate}
+      />
 
     </Grid>
   );

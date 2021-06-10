@@ -19,6 +19,13 @@ export enum LocaleIds {
   EN_GB = 'en_GB'
 }
 
+export enum Countries {
+  SWE = 'SWE',
+  NOR = 'NOR',
+  DNK = 'DNK',
+  GBR = 'GBR'
+}
+
 export enum DisplayMode {
   MODERN = 'modern',
   CLASSIC = 'classic'
@@ -34,7 +41,9 @@ export interface Config {
   localeId: LocaleIds,
   defaultLocaleId: LocaleIds,
   containerWidth: number | string,
-  containerHeight: number | string
+  containerHeight: number | string,
+  effectiveInterestRate: number,
+  country: Countries
 }
 
 export interface Theme {
@@ -64,5 +73,6 @@ export interface AmountOption {
 
 export interface PaymentDetailsState {
   months: number
-  amountOptions: Array<AmountOption>
+  amountOptions: Array<AmountOption>,
+  selectedAmount: null | number
 }
