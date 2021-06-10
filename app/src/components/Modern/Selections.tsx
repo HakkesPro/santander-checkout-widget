@@ -1,6 +1,7 @@
-import type { FC } from 'react';
+import type { FC, SyntheticEvent } from 'react';
 import { Grid, Input, Dropdown } from 'semantic-ui-react';
-import { useAppSelector } from 'redux/redux-hooks';
+import { useAppSelector, useAppDispatch } from 'redux/redux-hooks';
+import type { AppDispatch } from 'redux/store';
 import type {
   Translations,
   Theme,
@@ -8,6 +9,7 @@ import type {
   Config,
 } from 'types/global-types';
 import { amountWithCode, getCurrencyCodeByCountry } from 'utils/helpers';
+import { paymentActions } from 'redux/actions';
 
 interface Props {
   translations: Translations,
@@ -16,6 +18,8 @@ interface Props {
 }
 
 const Selections:FC<Props> = ({ translations, theme, config }) => {
+  const dispatch: AppDispatch = useAppDispatch();
+
   const paymentCtx: PaymentDetailsState = useAppSelector(({ paymentDetails }) => paymentDetails);
 
   const { localeId, country } = config;
@@ -28,6 +32,10 @@ const Selections:FC<Props> = ({ translations, theme, config }) => {
     ...option,
     text: amountWithCode(localeId, getCurrencyCodeByCountry(country), option.value),
   }));
+
+  const updateSelectedAmount = (e: SyntheticEvent, { value }: any): void => {
+    dispatch(paymentActions.setSelectedAmount(Number(value)));
+  };
 
   createStyleTag(theme.borderRadius);
 
@@ -48,6 +56,7 @@ const Selections:FC<Props> = ({ translations, theme, config }) => {
           fluid
           selection
           options={amountOptionsFixed}
+          onChange={updateSelectedAmount}
         />
       </Grid.Column>
     </Grid.Row>

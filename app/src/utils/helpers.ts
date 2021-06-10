@@ -56,24 +56,22 @@ export const amountWithCode = (localeId: string, currencyCode: string, amount: n
   )
     .format(amount);
 
-type GetCost = ({
-  localeId,
-  currencyCode,
-  months,
-  effectiveInterestRate,
-}: {
-  localeId: LocaleIds
-  currencyCode: string,
+// Effective interest calculation function
+interface GetCostArgs {
+  amount: number,
   months: number
   effectiveInterestRate: number
-}) => void
-export const getCost: GetCost = ({
-  localeId,
-  currencyCode,
+}
+type GetCostFromInterestRate = ({ amount, months, effectiveInterestRate }: GetCostArgs) => number
+export const getCostFromInterestRate: GetCostFromInterestRate = ({
+  amount,
   months,
   effectiveInterestRate,
 }) => {
-  console.log('getCost triggered');
+  const interestRate = ((effectiveInterestRate / 100) + 1);
+  const years = months / 12;
+  // eslint-disable-next-line no-restricted-properties
+  return Number(((amount || 0) * Math.pow(interestRate, years)).toFixed(0));
 };
 
 export const getCurrencyCodeByCountry = (country: Countries) => {

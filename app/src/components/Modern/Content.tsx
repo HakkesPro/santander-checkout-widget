@@ -27,8 +27,7 @@ const ClassicContent:FC = () => {
       <Footer
         translations={translations}
         theme={theme}
-        localeId={config.localeId}
-        effectiveInterestRate={config.effectiveInterestRate}
+        config={config}
       />
 
     </Grid>
