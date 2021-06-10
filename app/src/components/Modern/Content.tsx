@@ -1,11 +1,13 @@
 import type { FC } from 'react';
 import { Grid } from 'semantic-ui-react';
 import { useAppSelector } from 'redux/redux-hooks';
-import type { Config } from 'types/global-types';
+import type { Config, Theme } from 'types/global-types';
 import Header from './Header';
+import Selections from './Selections';
 
 const ClassicContent:FC = () => {
   const config: Config = useAppSelector(({ context }) => context.config);
+  const theme: Theme = useAppSelector(({ context }) => context.theme);
 
   // console.log(config);
 
@@ -20,18 +22,13 @@ const ClassicContent:FC = () => {
     >
       <Header config={config} />
 
-      <Grid.Row centered>
-        <Grid.Column>
-          <p>p tag</p>
-        </Grid.Column>
-        <Grid.Column>
-          <p>p tag</p>
-        </Grid.Column>
-      </Grid.Row>
+      <Selections />
 
-      <Grid.Row textAlign="left">
+      <Grid.Row columns={1} textAlign="left">
         <Grid.Column>
-          <p>p tag</p>
+          <p style={{ fontSize: theme.footerFontSize }}>
+            { config.footerText }
+          </p>
         </Grid.Column>
       </Grid.Row>
 

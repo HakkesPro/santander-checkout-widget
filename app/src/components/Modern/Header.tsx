@@ -8,17 +8,17 @@ interface Props {
 }
 
 const Header:FC<Props> = ({ config }) => {
-  const { headingFontSize, headingText } = config;
-  const isIntFont: boolean = typeof headingFontSize === 'number';
+  const { headerFontSize, headerText } = config;
+  const isIntFont: boolean = typeof headerFontSize === 'number';
 
   const fontSize = {
-    fontSize: isIntFont ? `${headingFontSize}px` : headingFontSize,
+    fontSize: isIntFont ? `${headerFontSize}px` : headerFontSize,
   };
 
   return (
     <Grid.Row>
       <Grid.Column textAlign="left">
-        <p style={fontSize}>{ headingText }</p>
+        <p style={fontSize}>{ headerText }</p>
       </Grid.Column>
       <Grid.Column style={{ placeItems: 'flex-end' }} textAlign="right">
         <Logo />

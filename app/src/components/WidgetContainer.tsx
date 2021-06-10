@@ -1,6 +1,7 @@
 import type { FC, ReactNode } from 'react';
 import { useAppSelector } from 'redux/redux-hooks';
 import type { Theme, Config } from 'types/global-types';
+import { isIframed } from 'utils/helpers';
 
 const sectionStyles = (theme: Theme, config: Config) => ({
   maxHeight: config.containerHeight,
@@ -9,7 +10,7 @@ const sectionStyles = (theme: Theme, config: Config) => ({
   width: '100vw',
   border: '1px solid',
   borderColor: theme.border,
-  margin: '10px',
+  margin: isIframed() ? '15px' : '3px',
   padding: '10px',
   background: theme.background,
   color: theme.text,

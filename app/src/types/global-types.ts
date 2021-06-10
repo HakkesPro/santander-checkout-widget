@@ -15,20 +15,22 @@ export enum DisplayMode {
 export interface Config {
   displayMode: DisplayMode,
   font: string,
-  headingText: string,
-  headingFontSize: string,
+  headerText: string,
+  headerFontSize: string,
   displayLogo: boolean,
   logoUrl: string,
   logoHeight: string,
   localeId: LocaleIds,
   containerWidth: number | string,
-  containerHeight: number | string
+  containerHeight: number | string,
+  footerText: string
 }
 
 export interface Theme {
   background: string,
   border: string,
-  text: string
+  text: string,
+  footerFontSize: string
 }
 
 export enum Paths {

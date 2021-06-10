@@ -1,0 +1,18 @@
+{
+  "SV_SE": {
+    "headerText": "Delbetalning väljs i kassan",
+    "footerText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi"
+  },
+  "NO_NO": {
+    "headerText": "Delbetaling velges i kassen",
+    "footerText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi"
+  },
+  "DA_DK": {
+    "headerText": "Delvis betaling vælges ved kassen",
+    "footerText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi"
+  },
+  "EN_GB": {
+    "headerText": "Partial payment is selected at checkout",
+    "footerText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi"
+  }
+}

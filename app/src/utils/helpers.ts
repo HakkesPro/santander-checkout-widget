@@ -33,9 +33,17 @@ export const getThemeFromUrl = () => {
 
   const addKey = (key: string, value: string) => {
     const themeProp = key.split('.')[1]; // theme.${themeProps} need to be splitted
-    urlTheme[themeProp] = value;
+    urlTheme[themeProp] = decodeURIComponent(value);
   };
   setAllowedKeys(allowedKeys, addKey);
 
   return urlTheme;
+};
+
+export const isIframed = () => {
+  try {
+    return window.self.window === window.top.window;
+  } catch (e) {
+    return false;
+  }
 };

@@ -5,12 +5,14 @@ import { initialConfig, initialTheme } from './initialStates';
 
 export interface InitialState {
   config: Config,
-  theme: Theme
+  theme: Theme,
+  translations: Record<string, string> | null
 }
 
 const initialState: InitialState = {
   config: initialConfig(),
   theme: initialTheme(),
+  translations: null,
 };
 
 export const contextSlice = createSlice({
