@@ -1,18 +1,22 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import type { Config, Theme } from 'types/global-types';
-import { initialConfig, initialTheme } from './initialStates';
+import type {
+  Config,
+  Theme,
+  Translations,
+} from 'types/global-types';
+import { initialConfig, initialTheme, initTranslations } from './initialStates';
 
 export interface InitialState {
   config: Config,
   theme: Theme,
-  translations: Record<string, string> | null
+  translations: Translations
 }
 
 const initialState: InitialState = {
   config: initialConfig(),
   theme: initialTheme(),
-  translations: null,
+  translations: initTranslations(),
 };
 
 export const contextSlice = createSlice({
@@ -30,6 +34,9 @@ export const contextSlice = createSlice({
         ...state.theme,
         ...action.payload,
       };
+    },
+    setTranslations: (state, action: PayloadAction<Translations>) => {
+      state.translations = action.payload;
     },
   },
 });

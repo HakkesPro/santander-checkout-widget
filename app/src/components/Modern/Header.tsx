@@ -4,11 +4,12 @@ import type { Config } from 'types/global-types';
 import Logo from '../Logo';
 
 interface Props {
-  config: Config
+  config: Config,
+  header: string
 }
 
-const Header:FC<Props> = ({ config }) => {
-  const { headerFontSize, headerText } = config;
+const Header:FC<Props> = ({ config, header }) => {
+  const { headerFontSize, displayLogo: shouldShowLogo } = config;
   const isIntFont: boolean = typeof headerFontSize === 'number';
 
   const fontSize = {
@@ -17,12 +18,14 @@ const Header:FC<Props> = ({ config }) => {
 
   return (
     <Grid.Row>
-      <Grid.Column textAlign="left">
-        <p style={fontSize}>{ headerText }</p>
+      <Grid.Column width={10} textAlign="left">
+        <p style={fontSize}>{ header }</p>
       </Grid.Column>
-      <Grid.Column style={{ placeItems: 'flex-end' }} textAlign="right">
-        <Logo />
-      </Grid.Column>
+      { shouldShowLogo && (
+        <Grid.Column width={6} style={{ placeItems: 'flex-end' }} textAlign="right">
+          <Logo />
+        </Grid.Column>
+      )}
     </Grid.Row>
   );
 };

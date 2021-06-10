@@ -7,29 +7,30 @@ import { useAppDispatch, useAppSelector } from 'redux/redux-hooks';
 import actions from 'redux/actions';
 import translations from 'utils/translations.json';
 import type { AppDispatch } from 'redux/store';
-import type { Config, Theme } from 'types/global-types';
+import type { Config, Theme, LocaleIds } from 'types/global-types';
 import './styles/App.scss';
-
-console.log('translations');
-console.log(translations);
 
 type ConfigParams = Partial<Config>
 type ThemeParams = Partial<Theme>
 
-// Add handling for setting config via url params, call action.setConfig
+const urlConfig: ConfigParams = getConfigFromUrl();
+const urlTheme: ThemeParams = getThemeFromUrl();
+
 const App: FC = () => {
   const dispatch: AppDispatch = useAppDispatch();
-  const localeId = useAppSelector(({ context }) => context.config.localeId);
+
+  /**
+   * @constant { string } localeId in store only serves as a
+   * default locale if no localeId is set, it never gets updated in store.
+   * Faced some re-render issues here
+   * localeId and translations is set from either default
+    * localeId or from passed in locale here at initial load.
+   */
+  const localeId: LocaleIds = useAppSelector(({ context }) => context.config.localeId);
 
   // Update redux with new configs from url params, theme and config
   useEffect(() => {
-    console.log('useEffect');
-    const configFromUrl: ConfigParams = getConfigFromUrl();
-    const themeFromUrl: ThemeParams = getThemeFromUrl();
-    setConfigsFromUrl(dispatch, configFromUrl, themeFromUrl);
-    console.log(configFromUrl);
-    console.log('localeId:');
-    console.log(localeId);
+    setStore(dispatch, localeId);
   }, [dispatch, localeId]);
 
   return (
@@ -40,10 +41,28 @@ const App: FC = () => {
 };
 
 // App helpers
-type SetConfigsFromUrl = (d: AppDispatch, c: ConfigParams, t: ThemeParams) => void
-const setConfigsFromUrl: SetConfigsFromUrl = (dispatch, configFromUrl, themeFromUrl) => {
-  dispatch(actions.setConfig(configFromUrl));
-  dispatch(actions.setTheme(themeFromUrl));
+type SetStore = (d: AppDispatch, l: LocaleIds) => void
+const setStore: SetStore = (dispatch, localeId) => {
+  const urlLocaleId: Partial<Record<'localeId', LocaleIds>> = {
+    ...urlConfig.localeId && { localeId: urlConfig.localeId },
+  };
+
+  delete urlConfig.localeId;
+
+  setUrlConfigs(dispatch);
+  setTranslations(dispatch, urlLocaleId.localeId, localeId);
+};
+
+type SetConfigsFromUrl = (d: AppDispatch) => void
+const setUrlConfigs: SetConfigsFromUrl = (dispatch) => {
+  dispatch(actions.setConfig(urlConfig));
+  dispatch(actions.setTheme(urlTheme));
+};
+
+type SetTranslations = (d: AppDispatch, u: undefined | LocaleIds, s: LocaleIds) => void
+const setTranslations: SetTranslations = (dispatch, urlLocaleId, storeLocaleId) => {
+  const localeId: LocaleIds = urlLocaleId || storeLocaleId;
+  dispatch(actions.setTranslations(translations[localeId]));
 };
 
 export default App;

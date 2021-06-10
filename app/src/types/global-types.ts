@@ -1,5 +1,10 @@
 /* eslint no-unused-vars: "off" */
 
+export interface Translations {
+  header: string,
+  footer: string
+}
+
 export enum LocaleIds {
   SV_SE = 'sv_SE',
   NO_NO = 'no_NO',
@@ -15,15 +20,13 @@ export enum DisplayMode {
 export interface Config {
   displayMode: DisplayMode,
   font: string,
-  headerText: string,
   headerFontSize: string,
   displayLogo: boolean,
   logoUrl: string,
   logoHeight: string,
   localeId: LocaleIds,
   containerWidth: number | string,
-  containerHeight: number | string,
-  footerText: string
+  containerHeight: number | string
 }
 
 export interface Theme {
