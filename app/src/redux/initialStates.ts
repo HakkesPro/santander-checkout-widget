@@ -46,4 +46,13 @@ export const intialAmountOptions = (): Array<AmountOption> => ([
   { key: 1999, text: ' 1 999', value: 1999 },
   { key: 1499, text: '1 499', value: 1499 },
   { key: 1299, text: '1 299', value: 1299 },
+  // extra
+  { key: 24991, text: '2 4991', value: 24991 },
+  { key: 19991, text: ' 1 9991', value: 19991 },
+  { key: 14991, text: '1 4991', value: 14991 },
+  { key: 12991, text: '1 2991', value: 12991 },
+  { key: 249912, text: '2 49921', value: 249921 },
+  { key: 199912, text: ' 1 99921', value: 199291 },
+  { key: 149921, text: '1 49912', value: 149912 },
+  { key: 129921, text: '1 29921', value: 129921 },
 ]);

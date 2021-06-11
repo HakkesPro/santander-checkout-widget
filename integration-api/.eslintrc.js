@@ -14,6 +14,26 @@ module.exports = {
   plugins: [
     '@typescript-eslint',
   ],
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.ts'],
+      },
+    },
+  },
   rules: {
+    'lines-between-class-members': 'off',
+    'space-before-function-paren': ['error', 'always'], // Enforces a space before function parenthes
+    'class-methods-use-this': 'off', // https://eslint.org/docs/rules/class-methods-use-this
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
   },
 };

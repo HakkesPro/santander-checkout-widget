@@ -40,8 +40,8 @@ export interface Config {
   logoHeight: string,
   localeId: LocaleIds,
   defaultLocaleId: LocaleIds,
-  containerWidth: number | string,
-  containerHeight: number | string,
+  containerWidth: string,
+  containerHeight: string,
   effectiveInterestRate: number,
   country: Countries
 }
@@ -61,8 +61,8 @@ export enum Paths {
 }
 
 export enum Measures {
-  WIDTH = '650px',
-  HEIGHT = '300px'
+  WIDTH = '400px',
+  HEIGHT = '150px'
 }
 
 export interface AmountOption {

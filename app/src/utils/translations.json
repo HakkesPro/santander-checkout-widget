@@ -1,7 +1,7 @@
 {
   "sv_SE": {
     "header": "Delbetalning väljs i kassan",
-    "footer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi",
+    "footer": "Delbetalning förutsätter att ett kreditavtal med Santander ingås med ett kreditkort efter en kreditbedömning",
     "months": "månader",
     "monthsAlias": "mnd",
     "monthlyAmount": "Månadsbelopp",
@@ -12,7 +12,7 @@
   },
   "no_NO": {
     "header": "Delbetaling velges i kassen",
-    "footer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi",
+    "footer": "Delbetaling forutsetter inngåelse av kredittavtale med Santander med kredittkort etter en kredittvurdering",
     "months": "måneder",
     "monthsAlias": "mnd",
     "monthlyAmount": "Månedlig beløp",
@@ -23,7 +23,7 @@
   },
   "da_DK": {
     "header": "Delvis betaling vælges ved kassen",
-    "footer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi",
+    "footer": "Delvis betaling forudsætter indgåelse af en kreditaftale med Santander med et kreditkort efter en kreditvurdering",
     "months": "måneder",
     "monthsAlias": "mnd",
     "monthlyAmount": "Månedligt beløb",
@@ -34,7 +34,7 @@
   },
   "en_GB": {
     "header": "Partial payment is selected at checkout",
-    "footer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi",
+    "footer": "Partial payment presupposes the conclusion of a credit agreement with Santander with a credit card after a credit assessment",
     "months": "months",
     "monthsAlias": "mht",
     "monthlyAmount": "Monthly amount",

@@ -52,7 +52,7 @@ export const isIframed = () => {
 export const amountWithCode = (localeId: string, currencyCode: string, amount: number) =>
   new Intl.NumberFormat(
     localeId.replace('_', '-'),
-    { style: 'currency', currency: currencyCode },
+    { style: 'currency', currency: currencyCode, minimumFractionDigits: 0 },
   )
     .format(amount);
 
