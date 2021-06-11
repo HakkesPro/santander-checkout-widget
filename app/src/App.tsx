@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppRoutes from 'components/AppRoutes';
 import { getConfigFromUrl, getThemeFromUrl } from 'utils/helpers';
@@ -20,10 +19,7 @@ const App: FC = () => {
   const dispatch: AppDispatch = useAppDispatch();
   const defaultLocaleId: LocaleIds = useAppSelector(({ context }) => context.config.defaultLocaleId);
 
-  useEffect(() => {
-    // Update redux with new configs from url params, theme and config
-    setStore(dispatch, defaultLocaleId);
-  }, [dispatch, defaultLocaleId]);
+  setStore(dispatch, defaultLocaleId);
 
   return (
     <Router>
