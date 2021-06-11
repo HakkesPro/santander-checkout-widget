@@ -39,12 +39,12 @@ const initRoutePush = (history: any, mode: Mode): void | null => {
   const historyPush = (path: string) => history.push(path + history.location.search);
 
   switch (mode) {
-    case Mode.MODERN:
-      historyPush(Paths.MODERN);
-      break;
     case Mode.CLASSIC:
-    default:
       historyPush(Paths.CLASSIC);
+      break;
+    case Mode.MODERN:
+    default:
+      historyPush(Paths.MODERN);
       break;
   }
 };
