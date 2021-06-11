@@ -5,7 +5,7 @@ import {
   Route,
   useHistory,
 } from 'react-router-dom';
-import { Paths, DisplayMode } from 'types/global-types';
+import { Paths, Mode } from 'types/global-types';
 import { useAppSelector } from 'redux/redux-hooks';
 import Loader from 'components/Loader';
 
@@ -17,9 +17,9 @@ const AppRoutes: FC = (): JSX.Element => {
   const history:any = useHistory();
   const containerHeight: string = useAppSelector(({ context }) => context.config.containerHeight);
   const containerWidth: string = useAppSelector(({ context }) => context.config.containerWidth);
-  const displayMode: DisplayMode = useAppSelector(({ context }) => context.config.displayMode);
+  const mode: Mode = useAppSelector(({ context }) => context.config.mode);
 
-  initRoutePush(history, displayMode);
+  initRoutePush(history, mode);
 
   return (
     <Switch>
@@ -32,17 +32,17 @@ const AppRoutes: FC = (): JSX.Element => {
   );
 };
 
-const initRoutePush = (history: any, displayMode: DisplayMode): void | null => {
+const initRoutePush = (history: any, mode: Mode): void | null => {
   const isConfigPath: boolean = history.location.pathname === Paths.CONFIG;
   if (isConfigPath) return null;
 
   const historyPush = (path: string) => history.push(path + history.location.search);
 
-  switch (displayMode) {
-    case DisplayMode.MODERN:
+  switch (mode) {
+    case Mode.MODERN:
       historyPush(Paths.MODERN);
       break;
-    case DisplayMode.CLASSIC:
+    case Mode.CLASSIC:
     default:
       historyPush(Paths.CLASSIC);
       break;

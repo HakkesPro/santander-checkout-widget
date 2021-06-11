@@ -1,6 +1,6 @@
 import {
   LocaleIds,
-  DisplayMode,
+  Mode,
   Measures,
   Countries,
 } from 'types/global-types';
@@ -14,7 +14,7 @@ const defaults = {
 };
 
 export const initialConfig = () => ({
-  displayMode: DisplayMode.MODERN,
+  mode: Mode.MODERN,
   font: 'arial',
   headerFontSize: '14px',
   displayLogo: true,

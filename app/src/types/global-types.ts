@@ -26,13 +26,13 @@ export enum Countries {
   GBR = 'GBR'
 }
 
-export enum DisplayMode {
+export enum Mode {
   MODERN = 'modern',
   CLASSIC = 'classic'
 }
 
 export interface Config {
-  displayMode: DisplayMode,
+  mode: Mode,
   font: string,
   headerFontSize: string,
   displayLogo: boolean,

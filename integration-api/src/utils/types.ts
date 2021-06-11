@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
-export enum DisplayMode {
+export enum Mode {
   MODERN = 'modern',
   CLASSIC = 'classic'
 }
@@ -33,7 +33,7 @@ export interface Theme {
 }
 
 export interface Config {
-  displayMode: DisplayMode,
+  mode: Mode,
   font: string,
   headerFontSize: string,
   displayLogo: boolean,
