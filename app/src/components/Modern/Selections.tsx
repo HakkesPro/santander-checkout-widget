@@ -55,6 +55,7 @@ const Selections:FC<Props> = ({ translations, theme, config }) => {
           placeholder={translations.monthlyAmount}
           fluid
           selection
+          // defaultValue={amountOptionsFixed[0].value}
           options={amountOptionsFixed}
           onChange={updateSelectedAmount}
         />
