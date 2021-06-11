@@ -6,7 +6,6 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { Paths, DisplayMode } from 'types/global-types';
-import type { Config as ConfigType } from 'types/global-types';
 import { useAppSelector } from 'redux/redux-hooks';
 import Loader from 'components/Loader';
 
@@ -16,9 +15,9 @@ const Classic = lazy(() => import('pages/Classic'));
 
 const AppRoutes: FC = (): JSX.Element => {
   const history:any = useHistory();
-  const config: ConfigType = useAppSelector(({ context }) => context.config);
-
-  const { displayMode, containerHeight, containerWidth } = config;
+  const containerHeight: string = useAppSelector(({ context }) => context.config.containerHeight);
+  const containerWidth: string = useAppSelector(({ context }) => context.config.containerWidth);
+  const displayMode: DisplayMode = useAppSelector(({ context }) => context.config.displayMode);
 
   initRoutePush(history, displayMode);
 
