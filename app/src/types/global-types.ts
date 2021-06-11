@@ -43,7 +43,8 @@ export interface Config {
   containerWidth: string,
   containerHeight: string,
   effectiveInterestRate: number,
-  country: Countries
+  country: Countries,
+  labelPosition: LabelPosition
 }
 
 export interface Theme {
@@ -75,4 +76,9 @@ export interface PaymentDetailsState {
   months: number
   amountOptions: Array<AmountOption>,
   selectedAmount: null | number
+}
+
+export enum LabelPosition {
+  LEFT = 'left',
+  RIGHT = 'right'
 }

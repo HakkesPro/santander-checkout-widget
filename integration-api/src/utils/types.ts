@@ -24,12 +24,9 @@ export enum Countries {
   GBR = 'GBR'
 }
 
-export interface Theme {
-  background: string,
-  border: string,
-  text: string,
-  footerFontSize: string,
-  borderRadius: string
+export enum LabelPosition {
+  LEFT = 'left',
+  RIGHT = 'right'
 }
 
 export interface Config {
@@ -44,7 +41,16 @@ export interface Config {
   containerWidth: string,
   containerHeight: string,
   effectiveInterestRate: number,
-  country: Countries
+  country: Countries,
+  labelPosition: LabelPosition
+}
+
+export interface Theme {
+  background: string,
+  border: string,
+  text: string,
+  footerFontSize: string,
+  borderRadius: string
 }
 
 export enum environment {

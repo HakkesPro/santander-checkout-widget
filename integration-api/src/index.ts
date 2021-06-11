@@ -1,6 +1,6 @@
-import type { ApiConfig } from './utils/types';
+import type { ApiConfig, Theme } from './utils/types';
 import { environment, hostedUrls } from './utils/types';
-import { serialize } from './utils/helpers';
+import { buildUrl } from './utils/helpers';
 
 const SANTANDER_CHECKOUT_WIDGET = class {
   private elId: string;
@@ -11,11 +11,11 @@ const SANTANDER_CHECKOUT_WIDGET = class {
   private containerHeight: string = '150px';
   private containerWidth: string = '400px';
 
-  constructor (elId: string, config: Partial<ApiConfig>) {
+  constructor (elId: string, config: Partial<ApiConfig> = {}, theme: Partial<Theme> = {}) {
     this.elId = elId;
     this.config = config;
     this.hostedOrigin = this.setEnvironment();
-    this.iframeUrl = `${this.hostedOrigin}?${serialize(this.config)}`;
+    this.iframeUrl = buildUrl(this.hostedOrigin, config, theme);
     this.setFrameAndContainerMeasures({
       containerHeight:
           this.config.heightWithDropdown

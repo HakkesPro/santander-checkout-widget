@@ -3,6 +3,7 @@ import {
   Mode,
   Measures,
   Countries,
+  LabelPosition,
 } from 'types/global-types';
 import translations from 'utils/translations.json';
 import type { AmountOption } from 'types/global-types';
@@ -27,6 +28,7 @@ export const initialConfig = () => ({
   containerHeight: Measures.HEIGHT,
   effectiveInterestRate: 27.49,
   country: defaults.COUNTRY,
+  labelPosition: LabelPosition.LEFT,
 });
 
 export const initialTheme = () => ({
