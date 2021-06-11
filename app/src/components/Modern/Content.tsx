@@ -6,7 +6,7 @@ import Header from './Header';
 import Selections from './Selections';
 import Footer from './Footer';
 
-const ClassicContent:FC = () => {
+const ModernContent:FC = () => {
   const config: Config = useAppSelector(({ context }) => context.config);
   const theme: Theme = useAppSelector(({ context }) => context.theme);
   const translations: Translations = useAppSelector(({ context }) => context.translations);
@@ -34,4 +34,4 @@ const ClassicContent:FC = () => {
   );
 };
 
-export default ClassicContent;
+export default ModernContent;
