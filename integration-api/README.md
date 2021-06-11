@@ -1,4 +1,4 @@
-# 🚀 Welcome to your new awesome project!
+# 🚀 Santander checkout widget integration api
 
 This project has been created using **webpack-cli**, you can now run
 

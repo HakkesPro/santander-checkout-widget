@@ -5,6 +5,11 @@ export enum DisplayMode {
   CLASSIC = 'classic'
 }
 
+export enum hostedUrls {
+  DEVELOPMENT = 'http://localhost:3000/',
+  PRODUCTION = 'http://localhost:3000/', // not deployed yet
+}
+
 export enum LocaleIds {
   SV_SE = 'sv_SE',
   NO_NO = 'no_NO',
@@ -42,6 +47,12 @@ export interface Config {
   country: Countries
 }
 
+export enum environment {
+  DEVELOPMENT = 'development',
+  PRODUCTION = 'production'
+}
+
 export interface ApiConfig extends Config {
-  heightWithDropdown?: string
+  heightWithDropdown?: string,
+  environment: environment
 }
