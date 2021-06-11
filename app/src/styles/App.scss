@@ -13,3 +13,17 @@
 #selections-modern-container > div:nth-child(2) > div > div.visible.menu.transition {
   max-height: 150px!important;
 }
+#selections-modern-container > div:nth-child(2) > div.selection.dropdown {
+  border-top-left-radius: 0px!important;
+  border-bottom-left-radius: 0px!important;
+}
+#selections-modern-container > div:nth-child(2) {
+  padding-left: 0;
+}
+#selections-modern-container > div:nth-child(1) > div > input[type=text] {
+  border-top-right-radius: 0px!important;
+  border-bottom-right-radius: 0px!important;
+}
+#selections-modern-container > div:nth-child(1) {
+  padding-right: 0;
+}
