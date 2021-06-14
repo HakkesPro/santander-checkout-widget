@@ -1,12 +1,13 @@
 import type { FC } from 'react';
 import { Grid } from 'semantic-ui-react';
+import Header from './Header';
+import Body from './Body';
 import { useAppSelector } from 'redux/redux-hooks';
 import type { Config, Theme, Translations } from 'types/global-types';
-import Header from './Header';
-import Selections from './Selections';
-import Footer from './Footer';
 
-const ModernContent:FC = () => {
+interface Props {}
+
+const Content:FC<Props> = (): JSX.Element => {
   const config: Config = useAppSelector(({ context }) => context.config);
   const theme: Theme = useAppSelector(({ context }) => context.theme);
   const translations: Translations = useAppSelector(({ context }) => context.translations);
@@ -14,24 +15,32 @@ const ModernContent:FC = () => {
   return (
     <Grid
       padded
-      stretched
-      divided={false}
-      columns={2}
-      verticalAlign="middle"
       style={{ height: '100%' }}
+      textAlign="center"
+      columns={2}
+      stretched
+      verticalAlign="middle"
     >
-      <Header header={translations.header} config={config} />
-
-      <Selections translations={translations} theme={theme} labelPosition={config.labelPosition} />
-
-      <Footer
-        translations={translations}
+      <Header
         theme={theme}
+        translations={translations}
+      />
+
+      <Body
+        translations={translations}
         config={config}
       />
 
+      <Grid.Row
+        columns={1}
+        textAlign="left"
+      >
+        <Grid.Column textAlign="left">
+          <p style={{ fontSize: theme.footerFontSize }}>{ translations.footer }</p>
+        </Grid.Column>
+      </Grid.Row>
     </Grid>
   );
 };
 
-export default ModernContent;
+export default Content;

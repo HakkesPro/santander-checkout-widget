@@ -5,11 +5,11 @@ import type {
   Theme,
   Translations,
   Config,
+  PaymentDetailsState,
 } from 'types/global-types';
 import {
-  // getCostFromInterestRate,
-  amountWithCode,
-  getCurrencyCodeByCountry,
+  getFixedTotalAmount,
+  getFixedTotalCost,
 } from 'utils/helpers';
 
 interface Props {
@@ -23,42 +23,24 @@ const Footer:FC<Props> = ({
   theme,
   config,
 }): JSX.Element => {
-  const months: number = useAppSelector(({ paymentDetails }) => paymentDetails.months);
-  const selectedAmount: null | number = useAppSelector(({ paymentDetails }) =>
-    paymentDetails.selectedAmount);
+  const { effectiveInterestRate } = config;
+  const {
+    months,
+    selectedAmount,
+  }: PaymentDetailsState = useAppSelector(({ paymentDetails }) => paymentDetails);
 
-  const { localeId, effectiveInterestRate, country } = config;
-
-  // Calculate total amount
-  const totalAmount: number = ((selectedAmount || 0) * months);
-  const fixedTotalAmount = amountWithCode(
-    localeId,
-    getCurrencyCodeByCountry(country),
-    totalAmount,
-  );
-
-  // Calculate total interest fee of amount
-  // const totalCost: number = getCostFromInterestRate({
-  //   amount: totalAmount,
-  //   months,
-  //   effectiveInterestRate,
-  // });
-  // const fixedTotalCost = amountWithCode(localeId, getCurrencyCodeByCountry(country), totalCost);
-  const fixedTotalCost = '{totalCost?}';
-
-  // Need to fix interest calculate rate, the above is not correct I think
+  const fixedTotalAmount = getFixedTotalAmount(selectedAmount || 0, months);
 
   return (
     <Grid.Row columns={1} textAlign="left">
       <Grid.Column>
         <p style={{ fontSize: theme.footerFontSize }}>
           { translations.inTotal }: { fixedTotalAmount } | { translations.effectiveInterestRate }:
-          <span> { effectiveInterestRate }% | { translations.cost }: { fixedTotalCost } </span>
+          <span> { effectiveInterestRate }% | { translations.cost }: { getFixedTotalCost() } </span>
         </p>
         <p style={{
           fontSize: theme.footerFontSize,
           marginTop: '-10px',
-          // marginBottom: '-10px',
         }}
         >
           { translations.footer }

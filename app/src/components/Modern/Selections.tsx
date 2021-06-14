@@ -5,46 +5,35 @@ import type { AppDispatch } from 'redux/store';
 import type {
   Translations,
   Theme,
-  PaymentDetailsState,
-  Config,
 } from 'types/global-types';
 import { LabelPosition } from 'types/global-types';
-import { amountWithCode, getCurrencyCodeByCountry } from 'utils/helpers';
+import { amountOptionsFixed, toPascalCase } from 'utils/helpers';
 import { paymentActions } from 'redux/actions';
 
 interface Props {
   translations: Translations,
   theme: Theme,
-  config: Config
+  labelPosition: LabelPosition
 }
 
-const Selections:FC<Props> = ({ translations, theme, config }) => {
+const Selections:FC<Props> = ({ translations, theme, labelPosition }) => {
   const dispatch: AppDispatch = useAppDispatch();
 
-  const paymentCtx: PaymentDetailsState = useAppSelector(({ paymentDetails }) => paymentDetails);
+  const months: number = useAppSelector(({ paymentDetails }) => paymentDetails.months);
 
-  const { localeId, country } = config;
-  const { months, amountOptions } = paymentCtx;
-
-  const monthsAliasSplit = translations.monthsAlias.split('');
-  const monthsAlias = monthsAliasSplit[0].toUpperCase() + monthsAliasSplit.splice(1).join('');
-
-  const amountOptionsFixed = amountOptions.map((option) => ({
-    ...option,
-    text: amountWithCode(localeId, getCurrencyCodeByCountry(country), option.value),
-  }));
+  const monthsAlias = toPascalCase(translations.monthsAlias);
 
   const updateSelectedAmount = (e: SyntheticEvent, { value }: any): void => {
     dispatch(paymentActions.setSelectedAmount(Number(value)));
   };
 
-  createStyleTag(theme.borderRadius, (config.labelPosition === LabelPosition.RIGHT));
+  createStyleTag(theme.borderRadius, (labelPosition === LabelPosition.RIGHT));
 
   return (
     <Grid.Row id="selections-modern-container" centered>
       <Grid.Column>
         <Input
-          labelPosition={config.labelPosition === LabelPosition.LEFT ? 'left corner' : 'right corner'}
+          labelPosition={labelPosition === LabelPosition.LEFT ? 'left corner' : 'right corner'}
           label={monthsAlias}
           disabled
           value={`${months} ${translations.months}`}
@@ -57,7 +46,7 @@ const Selections:FC<Props> = ({ translations, theme, config }) => {
           fluid
           selection
           // defaultValue={amountOptionsFixed[0].value}
-          options={amountOptionsFixed}
+          options={amountOptionsFixed()}
           onChange={updateSelectedAmount}
         />
       </Grid.Column>

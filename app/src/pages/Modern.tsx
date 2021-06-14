@@ -3,7 +3,7 @@ import WidgetContainer from 'components/WidgetContainer';
 import Content from 'components/Modern/Content';
 
 const Modern:FC = () => (
-  <WidgetContainer>
+  <WidgetContainer id="modern-container">
     <Content />
   </WidgetContainer>
 );

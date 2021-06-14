@@ -1,5 +1,6 @@
 // Overwrite semantic-ui
-#widget-container .ui.grid>.row {
+#modern-container .ui.grid>.row,
+#classic-container .ui.grid>.row {
   padding-top: 0!important;
   padding-bottom: 0!important;
 }
@@ -27,4 +28,17 @@
 }
 #selections-modern-container > div:nth-child(1) {
   padding-right: 0;
+}
+
+#classic-container > div > div.left.aligned.one.column.row > div > p {
+  display: flex;
+  align-items: center;
+}
+
+#classic-container div.seven.wide.column.test {
+  display: block!important;
+}
+
+#classic-container .ui.grid > .row {
+  min-height: 25px;
 }

@@ -1,13 +1,11 @@
 import type { FC } from 'react';
 import WidgetContainer from 'components/WidgetContainer';
+import Content from 'components/Classic/Content';
 
-const Classic:FC = () => {
-  const txt = 'Classic page';
-  return (
-    <WidgetContainer>
-      <h1>{txt}</h1>
-    </WidgetContainer>
-  );
-};
+const Classic:FC = () => (
+  <WidgetContainer id="classic-container">
+    <Content />
+  </WidgetContainer>
+);
 
 export default Classic;

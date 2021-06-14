@@ -3,15 +3,15 @@ import type { ApiConfig, Theme } from './types';
 export const x = {};
 
 export const serialize = (
-  config: Record<string, string | boolean | number>,
+  obj: Record<string, string | boolean | number>,
   prefix?: string | undefined,
 ) => {
   const str: string[] = [];
   // eslint-disable-next-line no-restricted-syntax
-  for (const key in config) {
-    if (Object.prototype.hasOwnProperty.call(config, key)) {
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
       const KEY = prefix ? `${prefix}.${key}` : key;
-      str.push(`${encodeURIComponent(KEY)}=${encodeURIComponent(config[key])}`);
+      str.push(`${encodeURIComponent(KEY)}=${encodeURIComponent(obj[key])}`);
     }
   }
   return str.join('&');

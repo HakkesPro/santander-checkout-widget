@@ -1,6 +1,7 @@
 import type { FC, ReactNode } from 'react';
 import { useAppSelector } from 'redux/redux-hooks';
 import type { Theme, Config } from 'types/global-types';
+import { Mode } from 'types/global-types';
 import { isIframed } from 'utils/helpers';
 
 const sectionStyles = (theme: Theme, config: Config) => ({
@@ -11,22 +12,23 @@ const sectionStyles = (theme: Theme, config: Config) => ({
   border: '1px solid',
   borderColor: theme.border,
   margin: isIframed() ? '15px' : '3px',
-  padding: '10px',
+  padding: config.mode === Mode.MODERN ? '10px' : '5px 0',
   background: theme.background,
   color: theme.text,
   borderRadius: theme.borderRadius,
 });
 
 interface Props {
-  children: ReactNode
+  children: ReactNode,
+  id: string
 }
 
-const WidgetContainer: FC<Props> = ({ children }) => {
+const WidgetContainer: FC<Props> = ({ children, id }) => {
   const theme: Theme = useAppSelector(({ context }) => context.theme);
   const config: Config = useAppSelector(({ context }) => context.config);
 
   return (
-    <section id="widget-container" style={sectionStyles(theme, config)}>
+    <section id={id} style={sectionStyles(theme, config)}>
       { children }
     </section>
   );

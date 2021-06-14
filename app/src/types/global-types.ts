@@ -1,4 +1,5 @@
 /* eslint no-unused-vars: "off" */
+import type { DropdownItemProps } from 'semantic-ui-react';
 
 export interface Translations {
   header: string,
@@ -9,7 +10,8 @@ export interface Translations {
   effectiveInterestRate: string,
   inTotal: string,
   cost: string,
-  currencyCode: string
+  currencyCode: string,
+  effectiveInterestRateAlias: string
 }
 
 export enum LocaleIds {
@@ -66,7 +68,7 @@ export enum Measures {
   HEIGHT = '150px'
 }
 
-export interface AmountOption {
+export interface AmountOption extends DropdownItemProps {
   key: number,
   text: string,
   value: number

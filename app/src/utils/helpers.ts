@@ -1,6 +1,8 @@
 import { initialConfig, initialTheme } from 'redux/initialStates';
 import { Countries, LocaleIds } from 'types/global-types';
+import type { AmountOption } from 'types/global-types';
 import translations from 'utils/translations.json';
+import { store } from 'redux/store';
 
 export const parseQueryString = (key: string): string | null =>
   new URL(window.location.href).searchParams.get(key);
@@ -9,7 +11,7 @@ const setAllowedKeys = (keys: string[], addKey: (key: string, value: string) => 
   keys.forEach((key: any) => {
     const value = parseQueryString(key);
     if (value) {
-      addKey(key, value);
+      addKey(decodeURIComponent(key), decodeURIComponent(value));
     }
   });
 };
@@ -34,7 +36,7 @@ export const getThemeFromUrl = () => {
 
   const addKey = (key: string, value: string) => {
     const themeProp = key.split('.')[1]; // theme.${themeProps} need to be splitted
-    urlTheme[themeProp] = decodeURIComponent(value);
+    urlTheme[themeProp] = value;
   };
   setAllowedKeys(allowedKeys, addKey);
 
@@ -87,3 +89,34 @@ export const getCurrencyCodeByCountry = (country: Countries) => {
       return translations[LocaleIds.SV_SE].currencyCode;
   }
 };
+
+export const amountOptionsFixed = (): Array<AmountOption> => {
+  const { paymentDetails, context } = store.getState();
+  return paymentDetails.amountOptions.map((option) => ({
+    ...option,
+    text: amountWithCode(
+      context.config.localeId,
+      getCurrencyCodeByCountry(context.config.country),
+      option.value,
+    ),
+  }));
+};
+
+export const toPascalCase = (str: string) => {
+  const split = str.split('');
+  const toPascal = split[0].toUpperCase() + split.splice(1).join('');
+  return toPascal;
+};
+
+export const getTotalAmount = (selectedAmount: number, months: number) => (selectedAmount || 0) * months;
+
+export const getFixedTotalAmount = (selectedAmount: number, months: number) => {
+  const { context } = store.getState();
+  return amountWithCode(
+    context.config.localeId,
+    getCurrencyCodeByCountry(context.config.country),
+    getTotalAmount(selectedAmount, months),
+  );
+};
+
+export const getFixedTotalCost = () => '{total?}';
