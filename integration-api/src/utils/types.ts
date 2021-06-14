@@ -7,7 +7,7 @@ export enum Mode {
 
 export enum hostedUrls {
   DEVELOPMENT = 'http://localhost:3000/',
-  PRODUCTION = 'https://gallant-bhabha-93a576.netlify.app/', // not deployed yet
+  PRODUCTION = 'https://gallant-bhabha-93a576.netlify.app/', // Change this later
 }
 
 export enum LocaleIds {
