@@ -1,0 +1,2 @@
+(this["webpackJsonpsantander-checkout-widget"]=this["webpackJsonpsantander-checkout-widget"]||[]).push([[6],{172:function(t,e,n){"use strict";n.r(e);var c=n(6);e.default=function(){return Object(c.jsx)("h1",{children:"Config page"})}}}]);
+//# sourceMappingURL=6.2cec1260.chunk.js.map
