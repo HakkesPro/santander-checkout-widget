@@ -64,7 +64,7 @@ const createStyleTag = (theme: Theme) => {
     #classic-container > div > div:nth-child(1) >
     div.nine.wide.column > div > div > div.left.aligned.column > div {
       background: #ffffff;
-      width: 85px;
+      width: 90px;
       padding: 1px 5px;
       border: 1px solid ${theme.border};
       border-radius: ${theme.borderRadius};
