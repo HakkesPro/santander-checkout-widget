@@ -3,10 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PaymentDetailsState, AmountOption } from 'types/global-types';
 import { intialAmountOptions } from '../initialStates';
 
+const defaultProductAmount: number = 5888;
+
 const initialState: PaymentDetailsState = {
-  months: 12,
-  amountOptions: intialAmountOptions(),
+  months: 0,
+  amountOptions: intialAmountOptions(defaultProductAmount),
   selectedAmount: null,
+  productAmount: defaultProductAmount,
+  totalCost: 0,
 };
 
 export const paymentSlice = createSlice({
@@ -21,6 +25,9 @@ export const paymentSlice = createSlice({
     },
     setSelectedAmount: (state, action: PayloadAction<null | number>) => {
       state.selectedAmount = action.payload;
+    },
+    setTotalCost: (state, action: PayloadAction<number>) => {
+      state.totalCost = action.payload;
     },
   },
 });

@@ -1,4 +1,5 @@
 import type { FC, SyntheticEvent } from 'react';
+import { useEffect } from 'react';
 import { Grid, Input, Dropdown } from 'semantic-ui-react';
 import { useAppSelector, useAppDispatch } from 'redux/redux-hooks';
 import type { AppDispatch } from 'redux/store';
@@ -8,6 +9,7 @@ import type {
 } from 'types/global-types';
 import { LabelPosition } from 'types/global-types';
 import { amountOptionsFixed, toPascalCase } from 'utils/helpers';
+import { updatePaymentDetails } from 'utils/payment-helpers';
 import { paymentActions } from 'redux/actions';
 
 interface Props {
@@ -20,12 +22,21 @@ const Selections:FC<Props> = ({ translations, theme, labelPosition }) => {
   const dispatch: AppDispatch = useAppDispatch();
 
   const months: number = useAppSelector(({ paymentDetails }) => paymentDetails.months);
+  const productAmount: number = useAppSelector(({ paymentDetails }) => paymentDetails.productAmount);
 
   const monthsAlias = toPascalCase(translations.monthsAlias);
 
+  const amountOptions = amountOptionsFixed();
+
+  const defaultValue = amountOptions[0].value;
+
   const updateSelectedAmount = (e: SyntheticEvent, { value }: any): void => {
-    dispatch(paymentActions.setSelectedAmount(Number(value)));
+    updatePaymentDetails(Number(value), dispatch, paymentActions, productAmount);
   };
+
+  useEffect(() => {
+    updatePaymentDetails(defaultValue, dispatch, paymentActions, productAmount);
+  }, [dispatch, defaultValue, productAmount]);
 
   createStyleTag(theme.borderRadius, (labelPosition === LabelPosition.RIGHT));
 
@@ -45,8 +56,8 @@ const Selections:FC<Props> = ({ translations, theme, labelPosition }) => {
           placeholder={translations.monthlyAmount}
           fluid
           selection
-          // defaultValue={amountOptionsFixed[0].value}
-          options={amountOptionsFixed()}
+          defaultValue={defaultValue}
+          options={amountOptions}
           onChange={updateSelectedAmount}
         />
       </Grid.Column>

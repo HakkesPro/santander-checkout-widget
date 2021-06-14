@@ -77,7 +77,9 @@ export interface AmountOption extends DropdownItemProps {
 export interface PaymentDetailsState {
   months: number
   amountOptions: Array<AmountOption>,
-  selectedAmount: null | number
+  selectedAmount: null | number,
+  productAmount: number,
+  totalCost: number,
 }
 
 export enum LabelPosition {

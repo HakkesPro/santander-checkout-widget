@@ -4,8 +4,7 @@ import { useAppSelector } from 'redux/redux-hooks';
 import type { Translations, Config, PaymentDetailsState } from 'types/global-types';
 import {
   toPascalCase,
-  getFixedTotalAmount,
-  getFixedTotalCost,
+  getFixedAmount,
 } from 'utils/helpers';
 
 interface Props {
@@ -17,8 +16,10 @@ const Body:FC<Props> = ({ translations, config }): JSX.Element => {
   const {
     months,
     selectedAmount,
+    totalCost,
   }: PaymentDetailsState = useAppSelector(({ paymentDetails }) => paymentDetails);
-  const fixedTotalAmount = getFixedTotalAmount(selectedAmount || 0, months);
+  const fixedTotalAmount: string = getFixedAmount(selectedAmount || 0, months);
+  const fixedTotalCost = getFixedAmount(totalCost, 0);
 
   return (
     <>
@@ -71,7 +72,7 @@ const Body:FC<Props> = ({ translations, config }): JSX.Element => {
                 <p>{ translations.cost }:</p>
               </Grid.Column>
               <Grid.Column width={8} textAlign="left">
-                <p>{ getFixedTotalCost() }</p>
+                <p>{ fixedTotalCost }</p>
               </Grid.Column>
             </Grid.Row>
           </Grid>

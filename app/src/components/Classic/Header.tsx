@@ -4,8 +4,9 @@ import { Grid, Dropdown } from 'semantic-ui-react';
 import Logo from '../Logo';
 import type { Translations, Theme } from 'types/global-types';
 import type { AppDispatch } from 'redux/store';
-import { useAppDispatch } from 'redux/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'redux/redux-hooks';
 import { amountOptionsFixed } from 'utils/helpers';
+import { updatePaymentDetails } from 'utils/payment-helpers';
 import { paymentActions } from 'redux/actions';
 
 interface Props {
@@ -16,16 +17,17 @@ interface Props {
 const Header:FC<Props> = ({ translations, theme }): JSX.Element => {
   const dispatch: AppDispatch = useAppDispatch();
   const amountOptions = amountOptionsFixed();
+  const productAmount: number = useAppSelector(({ paymentDetails }) => paymentDetails.productAmount);
 
   const updateSelectedAmount = (e: SyntheticEvent, { value }: any): void => {
-    dispatch(paymentActions.setSelectedAmount(Number(value)));
+    updatePaymentDetails(Number(value), dispatch, paymentActions, productAmount);
   };
 
   const defaultValue = amountOptions[0].value;
 
   useEffect(() => {
-    dispatch(paymentActions.setSelectedAmount(Number(defaultValue)));
-  }, [dispatch, defaultValue]);
+    updatePaymentDetails(defaultValue, dispatch, paymentActions, productAmount);
+  }, [dispatch, defaultValue, productAmount]);
 
   createStyleTag(theme);
 

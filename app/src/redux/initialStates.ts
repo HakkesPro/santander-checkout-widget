@@ -7,6 +7,7 @@ import {
 } from 'types/global-types';
 import translations from 'utils/translations.json';
 import type { AmountOption } from 'types/global-types';
+import { getPaymentIntervals } from 'utils/payment-helpers';
 
 const defaults = {
   // Sweden as default .. might change to other country
@@ -43,9 +44,5 @@ export const initTranslations = () => ({
   ...translations[defaults.LOCALE_ID],
 });
 
-export const intialAmountOptions = (): Array<AmountOption> => ([
-  { key: 2499, text: '2 499', value: 2499 },
-  { key: 1999, text: ' 1 999', value: 1999 },
-  { key: 1499, text: '1 499', value: 1499 },
-  { key: 1299, text: '1 299', value: 1299 },
-]);
+export const intialAmountOptions = (productAmount: number): Array<AmountOption> =>
+  getPaymentIntervals(productAmount);

@@ -9,9 +9,12 @@ export const parseQueryString = (key: string): string | null =>
 
 const setAllowedKeys = (keys: string[], addKey: (key: string, value: string) => void) => {
   keys.forEach((key: any) => {
-    const value = parseQueryString(key);
-    if (value) {
-      addKey(decodeURIComponent(key), decodeURIComponent(value));
+    const val: any = parseQueryString(key);
+    if (val) {
+      let value = val;
+      if (val === 'false') value = false;
+      if (val === 'true') value = true;
+      addKey(decodeURIComponent(key), typeof value === 'string' ? decodeURIComponent(value) : value);
     }
   });
 };
@@ -110,7 +113,7 @@ export const toPascalCase = (str: string) => {
 
 export const getTotalAmount = (selectedAmount: number, months: number) => (selectedAmount || 0) * months;
 
-export const getFixedTotalAmount = (selectedAmount: number, months: number) => {
+export const getFixedAmount = (selectedAmount: number, months: number): string => {
   const { context } = store.getState();
   return amountWithCode(
     context.config.localeId,
@@ -118,5 +121,3 @@ export const getFixedTotalAmount = (selectedAmount: number, months: number) => {
     getTotalAmount(selectedAmount, months),
   );
 };
-
-export const getFixedTotalCost = () => '{total?}';

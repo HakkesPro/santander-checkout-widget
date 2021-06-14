@@ -7,10 +7,7 @@ import type {
   Config,
   PaymentDetailsState,
 } from 'types/global-types';
-import {
-  getFixedTotalAmount,
-  getFixedTotalCost,
-} from 'utils/helpers';
+import { getFixedAmount } from 'utils/helpers';
 
 interface Props {
   translations: Translations,
@@ -27,16 +24,18 @@ const Footer:FC<Props> = ({
   const {
     months,
     selectedAmount,
+    totalCost,
   }: PaymentDetailsState = useAppSelector(({ paymentDetails }) => paymentDetails);
 
-  const fixedTotalAmount = getFixedTotalAmount(selectedAmount || 0, months);
+  const fixedTotalAmount = getFixedAmount(selectedAmount || 0, months);
+  const fixedTotalCost = getFixedAmount(totalCost, 0);
 
   return (
     <Grid.Row columns={1} textAlign="left">
       <Grid.Column>
         <p style={{ fontSize: theme.footerFontSize }}>
           { translations.inTotal }: { fixedTotalAmount } | { translations.effectiveInterestRate }:
-          <span> { effectiveInterestRate }% | { translations.cost }: { getFixedTotalCost() } </span>
+          <span> { effectiveInterestRate }% | { translations.cost }: { fixedTotalCost } </span>
         </p>
         <p style={{
           fontSize: theme.footerFontSize,
