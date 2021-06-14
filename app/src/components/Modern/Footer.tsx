@@ -28,7 +28,7 @@ const Footer:FC<Props> = ({
   }: PaymentDetailsState = useAppSelector(({ paymentDetails }) => paymentDetails);
 
   const fixedTotalAmount = getFixedAmount(selectedAmount || 0, months);
-  const fixedTotalCost = getFixedAmount(totalCost, 0);
+  const fixedTotalCost = getFixedAmount(totalCost, 1);
 
   return (
     <Grid.Row columns={1} textAlign="left">

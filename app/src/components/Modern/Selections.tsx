@@ -31,11 +31,11 @@ const Selections:FC<Props> = ({ translations, theme, labelPosition }) => {
   const defaultValue = amountOptions[0].value;
 
   const updateSelectedAmount = (e: SyntheticEvent, { value }: any): void => {
-    updatePaymentDetails(Number(value), dispatch, paymentActions, productAmount);
+    updatePaymentDetails(Number(value), productAmount, dispatch, paymentActions);
   };
 
   useEffect(() => {
-    updatePaymentDetails(defaultValue, dispatch, paymentActions, productAmount);
+    updatePaymentDetails(defaultValue, productAmount, dispatch, paymentActions);
   }, [dispatch, defaultValue, productAmount]);
 
   createStyleTag(theme.borderRadius, (labelPosition === LabelPosition.RIGHT));

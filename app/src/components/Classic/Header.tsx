@@ -20,13 +20,13 @@ const Header:FC<Props> = ({ translations, theme }): JSX.Element => {
   const productAmount: number = useAppSelector(({ paymentDetails }) => paymentDetails.productAmount);
 
   const updateSelectedAmount = (e: SyntheticEvent, { value }: any): void => {
-    updatePaymentDetails(Number(value), dispatch, paymentActions, productAmount);
+    updatePaymentDetails(Number(value), productAmount, dispatch, paymentActions);
   };
 
   const defaultValue = amountOptions[0].value;
 
   useEffect(() => {
-    updatePaymentDetails(defaultValue, dispatch, paymentActions, productAmount);
+    updatePaymentDetails(defaultValue, productAmount, dispatch, paymentActions);
   }, [dispatch, defaultValue, productAmount]);
 
   createStyleTag(theme);

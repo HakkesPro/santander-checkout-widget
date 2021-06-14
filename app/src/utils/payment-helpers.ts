@@ -51,10 +51,12 @@ export const getPaymentIntervals = (totalAmount: number): Array<AmountOption> =>
 
 export const updatePaymentDetails = (
   selectedAmount: number,
+  productAmount: number,
   dispatch: AppDispatch,
   paymentActions: any,
-  productAmount: number,
 ) => {
+  // Need to fix this calculation of total product amount to interest fee and total cost.
   dispatch(paymentActions.setSelectedAmount(selectedAmount));
   dispatch(paymentActions.setMonths(Math.ceil(productAmount / selectedAmount).toFixed(0)));
+  dispatch(paymentActions.setTotalCost(Math.random()));
 };
