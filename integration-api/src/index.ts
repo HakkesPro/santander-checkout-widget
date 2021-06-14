@@ -2,6 +2,10 @@ import type { ApiConfig, Theme } from './utils/types';
 import { environment, hostedUrls } from './utils/types';
 import { buildUrl } from './utils/helpers';
 
+interface Configs extends Partial<ApiConfig> {
+  theme?: Partial<Theme>
+}
+
 const SANTANDER_CHECKOUT_WIDGET = class {
   private elId: string;
   private config: Partial<ApiConfig>;
@@ -11,7 +15,11 @@ const SANTANDER_CHECKOUT_WIDGET = class {
   private containerHeight: string = '150px';
   private containerWidth: string = '400px';
 
-  constructor (elId: string, config: Partial<ApiConfig> = {}, theme: Partial<Theme> = {}) {
+  constructor (elId: string, configs: Configs) {
+    const config = { ...configs };
+    const theme = { ...configs.theme && { ...configs.theme } };
+    delete config.theme;
+
     this.elId = elId;
     this.config = config;
     this.hostedOrigin = this.setEnvironment();
