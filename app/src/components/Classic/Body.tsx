@@ -1,11 +1,15 @@
 import type { FC } from 'react';
 import { Grid } from 'semantic-ui-react';
-import { useAppSelector } from 'redux/redux-hooks';
+import { useEffect, useState } from 'react';
+import { useAppSelector, useAppDispatch } from 'redux/redux-hooks';
+import type { AppDispatch } from 'redux/store';
 import type { Translations, PaymentDetailsState } from 'types/global-types';
 import {
   toPascalCase,
   getFixedAmount,
 } from 'utils/helpers';
+import calulator from 'utils/calculator';
+import { paymentActions } from 'redux/actions';
 
 interface Props {
   translations: Translations
@@ -13,13 +17,35 @@ interface Props {
 
 const Body:FC<Props> = ({ translations }): JSX.Element => {
   const {
-    months,
     selectedAmount,
     loanAmount,
     nomInterestRate,
+    startupFee,
+    termFee,
   }: PaymentDetailsState = useAppSelector(({ paymentDetails }) => paymentDetails);
-  const fixedTotalAmount: string = getFixedAmount(selectedAmount || 0, months);
-  const fixedTotalCost = getFixedAmount(loanAmount, 1);
+  const dispatch: AppDispatch = useAppDispatch();
+  const months: number = useAppSelector(({ paymentDetails }) => paymentDetails.months);
+
+  const [fixedTotalAmount, setFixedTotalAmount] = useState<string>('0');
+  const [fixedTotalCost, setFixedTotalCost] = useState<string>('0');
+  const [effectiveInterestRate, setEffectiveInterestRate] = useState<string>('0');
+
+  useEffect(() => {
+    if (selectedAmount) {
+      const result = calulator.Calculate(
+        loanAmount,
+        nomInterestRate,
+        selectedAmount,
+        startupFee,
+        termFee,
+      );
+      const totalPurchaseCost = Number(result.totalPurchaseCost.replace(' ', ''));
+      setEffectiveInterestRate(result.effectiveRate);
+      setFixedTotalAmount(getFixedAmount(totalPurchaseCost, 1));
+      setFixedTotalCost(getFixedAmount((totalPurchaseCost - loanAmount), 1));
+      dispatch(paymentActions.setMonths(result.months));
+    }
+  }, [dispatch, loanAmount, selectedAmount, nomInterestRate, startupFee, termFee]);
 
   return (
     <>
@@ -44,7 +70,7 @@ const Body:FC<Props> = ({ translations }): JSX.Element => {
                 <p>{ translations.effectiveInterestRateAlias }:</p>
               </Grid.Column>
               <Grid.Column width={8} textAlign="left">
-                <p>{ nomInterestRate.toString().replace('.', ',') }%</p>
+                <p>{ effectiveInterestRate }%</p>
               </Grid.Column>
             </Grid.Row>
           </Grid>

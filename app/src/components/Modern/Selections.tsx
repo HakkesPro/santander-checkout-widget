@@ -9,7 +9,6 @@ import type {
 } from 'types/global-types';
 import { LabelPosition } from 'types/global-types';
 import { amountOptionsFixed, toPascalCase } from 'utils/helpers';
-import { updatePaymentDetails } from 'utils/payment-helpers';
 import { paymentActions } from 'redux/actions';
 
 interface Props {
@@ -22,7 +21,6 @@ const Selections:FC<Props> = ({ translations, theme, labelPosition }) => {
   const dispatch: AppDispatch = useAppDispatch();
 
   const months: number = useAppSelector(({ paymentDetails }) => paymentDetails.months);
-  const loanAmount: number = useAppSelector(({ paymentDetails }) => paymentDetails.loanAmount);
 
   const monthsAlias = toPascalCase(translations.monthsAlias);
 
@@ -31,12 +29,12 @@ const Selections:FC<Props> = ({ translations, theme, labelPosition }) => {
   const defaultValue = amountOptions[0].value;
 
   const updateSelectedAmount = (e: SyntheticEvent, { value }: any): void => {
-    updatePaymentDetails(Number(value), loanAmount, dispatch, paymentActions);
+    dispatch(paymentActions.setSelectedAmount(Number(value)));
   };
 
   useEffect(() => {
-    updatePaymentDetails(defaultValue, loanAmount, dispatch, paymentActions);
-  }, [dispatch, defaultValue, loanAmount]);
+    dispatch(paymentActions.setSelectedAmount(defaultValue));
+  }, [dispatch, defaultValue]);
 
   createStyleTag(theme.borderRadius, (labelPosition === LabelPosition.RIGHT));
 

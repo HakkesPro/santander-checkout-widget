@@ -1,6 +1,5 @@
 /* eslint-disable import/prefer-default-export */
 import type { AmountOption } from 'types/global-types';
-import type { AppDispatch } from 'redux/store';
 
 const generateAmountOptions = (arr: Array<any>) => {
   const amountOptions:Array<AmountOption> = [];
@@ -47,15 +46,4 @@ export const getPaymentIntervals = (totalAmount: number): Array<AmountOption> =>
   }
   // Else
   return generateAmountOptions([0]);
-};
-
-export const updatePaymentDetails = (
-  selectedAmount: number,
-  loanAmount: number,
-  dispatch: AppDispatch,
-  paymentActions: any,
-) => {
-  // Need to fix this calculation of total product amount to interest fee and total cost.
-  dispatch(paymentActions.setSelectedAmount(selectedAmount));
-  dispatch(paymentActions.setMonths(Math.ceil(loanAmount / selectedAmount).toFixed(0)));
 };

@@ -13,7 +13,7 @@ const SANTANDER_CHECKOUT_WIDGET = class {
   private hostedOrigin: string;
   private iframeId: string = '_CHECKOUT_WIDGET_IFRAME_';
   private containerHeight: string = '150px';
-  private containerWidth: string = '400px';
+  private containerWidth: string = '430px';
 
   constructor (elId: string, configs: Configs) {
     const config = { ...configs };

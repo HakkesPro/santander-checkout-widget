@@ -3,15 +3,15 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PaymentDetailsState, AmountOption } from 'types/global-types';
 import { intialAmountOptions } from '../initialStates';
 
-const defaultLoanAmount: number = 100888;
+const defaultLoanAmount: number = 4222;
 
 const initialState: PaymentDetailsState = {
-  months: 0,
   amountOptions: intialAmountOptions(defaultLoanAmount),
+  months: 0,
   selectedAmount: null,
   loanAmount: defaultLoanAmount,
   nomInterestRate: 21.00,
-  termsFee: 50,
+  termFee: 50,
   startupFee: 50,
   countrySpecifics: null,
 };

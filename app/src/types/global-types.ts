@@ -64,7 +64,7 @@ export enum Paths {
 }
 
 export enum Measures {
-  WIDTH = '400px',
+  WIDTH = '430px',
   HEIGHT = '150px'
 }
 
@@ -76,7 +76,7 @@ export interface AmountOption extends DropdownItemProps {
 
 interface FeeAndRate {
   nomInterestRate: number,
-  termsFee: number,
+  termFee: number,
   startupFee: number,
 }
 
@@ -85,7 +85,7 @@ interface FeeAndRate {
  * ex: {
  *  NOR: {
  *   nomInterestRate: 19,
- *   termsFee: 10
+ *   termFee: 10
  *   startupFee: 0
  *  }
  * }
@@ -95,8 +95,8 @@ interface FeeAndRate {
 type CountrySpecifics = Array<Record<string, Partial<FeeAndRate>>>
 
 export interface PaymentDetailsState extends FeeAndRate {
-  months: number
   amountOptions: Array<AmountOption>,
+  months: number,
   selectedAmount: null | number,
   loanAmount: number,
   countrySpecifics: null | CountrySpecifics
