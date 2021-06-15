@@ -73,12 +73,23 @@ export interface AmountOption extends DropdownItemProps {
   value: number
 }
 
-export interface PaymentDetailsState {
+interface FeeAndRate {
+  nomInterestRate: number,
+  termsFee: number,
+  startupFee: number,
+}
+
+/*
+ * string will be a custom COUNTRY code.
+ */
+type CountrySpecifics = Array<Record<string, FeeAndRate>>
+
+export interface PaymentDetailsState extends FeeAndRate {
   months: number
   amountOptions: Array<AmountOption>,
   selectedAmount: null | number,
   loanAmount: number,
-  nomInterestRate: number,
+  countrySpecifics: null | CountrySpecifics
 }
 
 export enum LabelPosition {
