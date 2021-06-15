@@ -2,6 +2,7 @@
   "name": "santander-checkout-widget",
   "version": "0.1.0",
   "private": true,
+  "author": "Håkan Sundström <sundarenius@gmail.com>",
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",
     "react": "^17.0.2",
