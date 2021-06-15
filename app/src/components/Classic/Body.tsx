@@ -33,63 +33,63 @@ const Body:FC<Props> = ({ translations }): JSX.Element => {
 
   return (
     <>
-      <Grid.Row>
-        <Grid.Column width={8}>
-          <Grid verticalAlign="middle">
-            <Grid.Row columns={2}>
-              <Grid.Column textAlign="left">
-                <p>{ toPascalCase(translations.months) }:</p>
-              </Grid.Column>
-              <Grid.Column textAlign="left">
-                <p>{ months } { translations.monthsAlias }</p>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Grid.Column>
+      <MyGrid
+        typeOne={toPascalCase(translations.months)}
+        valueOne={`${months} ${translations.monthsAlias}`}
+        typeTwo={translations.effectiveInterestRateAlias}
+        valueTwo={`${effectiveInterestRate}%`}
+      />
 
-        <Grid.Column width={8}>
-          <Grid verticalAlign="middle">
-            <Grid.Row columns={2}>
-              <Grid.Column width={8} textAlign="left">
-                <p>{ translations.effectiveInterestRateAlias }:</p>
-              </Grid.Column>
-              <Grid.Column width={8} textAlign="left">
-                <p>{ effectiveInterestRate }%</p>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Grid.Column>
-      </Grid.Row>
-
-      <Grid.Row>
-        <Grid.Column width={8}>
-          <Grid verticalAlign="middle">
-            <Grid.Row columns={2}>
-              <Grid.Column textAlign="left">
-                <p>{ translations.inTotal }:</p>
-              </Grid.Column>
-              <Grid.Column textAlign="left">
-                <p>{ fixedTotalAmount }</p>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Grid.Column>
-
-        <Grid.Column width={8}>
-          <Grid verticalAlign="middle">
-            <Grid.Row columns={9}>
-              <Grid.Column width={8} textAlign="left">
-                <p>{ translations.cost }:</p>
-              </Grid.Column>
-              <Grid.Column width={8} textAlign="left">
-                <p>{ fixedTotalCost }</p>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Grid.Column>
-      </Grid.Row>
+      <MyGrid
+        typeOne={translations.inTotal}
+        valueOne={fixedTotalAmount}
+        typeTwo={translations.cost}
+        valueTwo={fixedTotalCost}
+      />
     </>
   );
 };
+
+interface MyGridProps {
+  typeOne: string,
+  valueOne: string
+  typeTwo: string,
+  valueTwo: string
+}
+
+const MyGrid: FC<MyGridProps> = ({
+  typeOne,
+  valueOne,
+  typeTwo,
+  valueTwo,
+}) => (
+  <Grid.Row>
+    <Grid.Column width={8}>
+      <Grid verticalAlign="middle">
+        <Grid.Row columns={2}>
+          <Grid.Column textAlign="left">
+            <p>{ typeOne }:</p>
+          </Grid.Column>
+          <Grid.Column textAlign="left">
+            <p>{ valueOne }</p>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Grid.Column>
+
+    <Grid.Column width={8}>
+      <Grid verticalAlign="middle">
+        <Grid.Row columns={9}>
+          <Grid.Column width={8} textAlign="left">
+            <p>{ typeTwo }:</p>
+          </Grid.Column>
+          <Grid.Column width={8} textAlign="left">
+            <p>{ valueTwo }</p>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Grid.Column>
+  </Grid.Row>
+)
 
 export default Body;
