@@ -14,17 +14,17 @@
 #selections-modern-container > div:nth-child(2) > div > div.visible.menu.transition {
   max-height: 150px!important;
 }
-#selections-modern-container > div:nth-child(2) > div.selection.dropdown {
+#selections-modern-container > div:nth-child(2) > div > input[type=text] {
   border-top-left-radius: 0px!important;
   border-bottom-left-radius: 0px!important;
+  border-left-color: #e8e8e8;
 }
 #selections-modern-container > div:nth-child(2) {
   padding-left: 0;
 }
-#selections-modern-container > div:nth-child(1) > div > input[type=text] {
+#selections-modern-container > div:nth-child(1) > div {
   border-top-right-radius: 0px!important;
   border-bottom-right-radius: 0px!important;
-  border-right: none;
 }
 #selections-modern-container > div:nth-child(1) {
   padding-right: 0;
@@ -35,13 +35,9 @@
   align-items: center;
 }
 
-#classic-container div.seven.wide.column.test {
-  display: block!important;
-}
-
 #classic-container .ui.grid > .row {
   min-height: 25px;
 }
-#classic-container > div > div:nth-child(1) > div.nine.wide.column > div > div > div:nth-child(2) > div > i {
-  margin: 0 0 0 2em;
+#classic-container > div > div:nth-child(1) > div.eight.wide.column > div > div > div:nth-child(2) > div > i {
+  margin: 0 0 0 0.5em;
 }

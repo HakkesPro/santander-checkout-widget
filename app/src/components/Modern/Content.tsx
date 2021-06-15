@@ -20,14 +20,13 @@ const ModernContent:FC = () => {
       verticalAlign="middle"
       style={{ height: '100%' }}
     >
-      <Header header={translations.header} config={config} />
+      <Header header={translations.header} config={config} headerFontSize={theme.headerFontSize} />
 
       <Selections translations={translations} theme={theme} labelPosition={config.labelPosition} />
 
       <Footer
         translations={translations}
         theme={theme}
-        config={config}
       />
 
     </Grid>

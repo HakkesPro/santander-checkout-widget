@@ -35,8 +35,6 @@ export enum Mode {
 
 export interface Config {
   mode: Mode,
-  font: string,
-  headerFontSize: string,
   displayLogo: boolean,
   logoUrl: string,
   logoHeight: string,
@@ -44,7 +42,6 @@ export interface Config {
   defaultLocaleId: LocaleIds,
   containerWidth: string,
   containerHeight: string,
-  effectiveInterestRate: number,
   country: Countries,
   labelPosition: LabelPosition
 }
@@ -54,7 +51,9 @@ export interface Theme {
   border: string,
   text: string,
   footerFontSize: string,
-  borderRadius: string
+  borderRadius: string,
+  font: string,
+  headerFontSize: string
 }
 
 export enum Paths {
@@ -80,6 +79,7 @@ export interface PaymentDetailsState {
   selectedAmount: null | number,
   productAmount: number,
   totalCost: number,
+  nomInterestRate: number,
 }
 
 export enum LabelPosition {

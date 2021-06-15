@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PaymentDetailsState, AmountOption } from 'types/global-types';
 import { intialAmountOptions } from '../initialStates';
 
-const defaultProductAmount: number = 5888;
+const defaultProductAmount: number = 100888;
 
 const initialState: PaymentDetailsState = {
   months: 0,
@@ -11,6 +11,7 @@ const initialState: PaymentDetailsState = {
   selectedAmount: null,
   productAmount: defaultProductAmount,
   totalCost: 0,
+  nomInterestRate: 21.00,
 };
 
 export const paymentSlice = createSlice({

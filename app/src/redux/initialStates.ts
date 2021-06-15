@@ -17,17 +17,14 @@ const defaults = {
 
 export const initialConfig = () => ({
   mode: Mode.MODERN,
-  font: 'arial',
-  headerFontSize: '14px',
   displayLogo: true,
   // eslint-disable-next-line max-len
-  logoUrl: 'https://d2o7rqynhxcgmp.cloudfront.net/uploads/images/footer/Sweden/Bambora-footer.svg',
-  logoHeight: '30px',
+  logoUrl: 'https://static.paymentiq.io/santander.svg',
+  logoHeight: '25px',
   localeId: defaults.LOCALE_ID,
   defaultLocaleId: defaults.LOCALE_ID, // Need this for some initial re-render issues
   containerWidth: Measures.WIDTH,
   containerHeight: Measures.HEIGHT,
-  effectiveInterestRate: 27.49,
   country: defaults.COUNTRY,
   labelPosition: LabelPosition.LEFT,
 });
@@ -36,8 +33,10 @@ export const initialTheme = () => ({
   background: '#f8f8f8',
   border: 'rgb(202 202 202)',
   text: '#333333',
-  footerFontSize: '0.8rem',
-  borderRadius: '.28571429rem',
+  footerFontSize: '10px',
+  headerFontSize: '14px',
+  borderRadius: '4px',
+  font: 'arial',
 });
 
 export const initTranslations = () => ({

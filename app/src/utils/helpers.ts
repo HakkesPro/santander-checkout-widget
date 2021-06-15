@@ -65,15 +65,15 @@ export const amountWithCode = (localeId: string, currencyCode: string, amount: n
 interface GetCostArgs {
   amount: number,
   months: number
-  effectiveInterestRate: number
+  nomInterestRate: number
 }
-type GetCostFromInterestRate = ({ amount, months, effectiveInterestRate }: GetCostArgs) => number
+type GetCostFromInterestRate = ({ amount, months, nomInterestRate }: GetCostArgs) => number
 export const getCostFromInterestRate: GetCostFromInterestRate = ({
   amount,
   months,
-  effectiveInterestRate,
+  nomInterestRate,
 }) => {
-  const interestRate = ((effectiveInterestRate / 100) + 1);
+  const interestRate = ((nomInterestRate / 100) + 1);
   const years = months / 12;
   // eslint-disable-next-line no-restricted-properties
   return Number(((amount || 0) * Math.pow(interestRate, years)).toFixed(0));

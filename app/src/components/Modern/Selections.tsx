@@ -43,14 +43,6 @@ const Selections:FC<Props> = ({ translations, theme, labelPosition }) => {
   return (
     <Grid.Row id="selections-modern-container" centered>
       <Grid.Column>
-        <Input
-          labelPosition={labelPosition === LabelPosition.LEFT ? 'left corner' : 'right corner'}
-          label={monthsAlias}
-          disabled
-          value={`${months} ${translations.months}`}
-        />
-      </Grid.Column>
-      <Grid.Column>
         <Dropdown
           labeled
           placeholder={translations.monthlyAmount}
@@ -59,6 +51,14 @@ const Selections:FC<Props> = ({ translations, theme, labelPosition }) => {
           defaultValue={defaultValue}
           options={amountOptions}
           onChange={updateSelectedAmount}
+        />
+      </Grid.Column>
+      <Grid.Column>
+        <Input
+          labelPosition={labelPosition === LabelPosition.LEFT ? 'left corner' : 'right corner'}
+          label={monthsAlias}
+          disabled
+          value={`${months} ${translations.months}`}
         />
       </Grid.Column>
     </Grid.Row>

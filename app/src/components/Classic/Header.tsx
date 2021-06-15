@@ -34,7 +34,7 @@ const Header:FC<Props> = ({ translations, theme }): JSX.Element => {
   return (
     <Grid.Row>
 
-      <Grid.Column width={9}>
+      <Grid.Column width={8}>
         <Grid verticalAlign="middle">
           <Grid.Row columns={2}>
             <Grid.Column textAlign="left">
@@ -52,7 +52,7 @@ const Header:FC<Props> = ({ translations, theme }): JSX.Element => {
         </Grid>
       </Grid.Column>
 
-      <Grid.Column className="test" width={7}>
+      <Grid.Column className="test" width={8}>
         <Logo />
       </Grid.Column>
 
@@ -64,9 +64,9 @@ const createStyleTag = (theme: Theme) => {
   const style = document.createElement('style');
   style.innerText = `
     #classic-container > div > div:nth-child(1) >
-    div.nine.wide.column > div > div > div.left.aligned.column > div {
+    div.eight.wide.column > div > div > div.left.aligned.column > div {
       background: #ffffff;
-      width: 100px;
+      width: 90px;
       padding: 1px 5px;
       border: 1px solid ${theme.border};
       border-radius: ${theme.borderRadius};

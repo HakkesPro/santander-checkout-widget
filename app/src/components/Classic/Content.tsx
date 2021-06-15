@@ -3,12 +3,11 @@ import { Grid } from 'semantic-ui-react';
 import Header from './Header';
 import Body from './Body';
 import { useAppSelector } from 'redux/redux-hooks';
-import type { Config, Theme, Translations } from 'types/global-types';
+import type { Theme, Translations } from 'types/global-types';
 
 interface Props {}
 
 const Content:FC<Props> = (): JSX.Element => {
-  const config: Config = useAppSelector(({ context }) => context.config);
   const theme: Theme = useAppSelector(({ context }) => context.theme);
   const translations: Translations = useAppSelector(({ context }) => context.translations);
 
@@ -28,7 +27,6 @@ const Content:FC<Props> = (): JSX.Element => {
 
       <Body
         translations={translations}
-        config={config}
       />
 
       <Grid.Row

@@ -5,11 +5,12 @@ import Logo from '../Logo';
 
 interface Props {
   config: Config,
-  header: string
+  header: string,
+  headerFontSize: string
 }
 
-const Header:FC<Props> = ({ config, header }) => {
-  const { headerFontSize, displayLogo: shouldShowLogo } = config;
+const Header:FC<Props> = ({ config, header, headerFontSize }) => {
+  const { displayLogo: shouldShowLogo } = config;
   const isFontInt: boolean = typeof headerFontSize === 'number';
 
   const fontSize = {
