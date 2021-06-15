@@ -1,15 +1,9 @@
 import type { FC } from 'react';
 import { Grid } from 'semantic-ui-react';
-import { useEffect, useState } from 'react';
-import { useAppSelector, useAppDispatch } from 'redux/redux-hooks';
-import type { AppDispatch } from 'redux/store';
+import { useAppSelector } from 'redux/redux-hooks';
 import type { Translations, PaymentDetailsState } from 'types/global-types';
-import {
-  toPascalCase,
-  getFixedAmount,
-} from 'utils/helpers';
-import calulator from 'utils/calculator';
-import { paymentActions } from 'redux/actions';
+import { toPascalCase } from 'utils/helpers';
+import { useCalulate } from 'utils/custom-hooks';
 
 interface Props {
   translations: Translations
@@ -23,29 +17,19 @@ const Body:FC<Props> = ({ translations }): JSX.Element => {
     startupFee,
     termFee,
   }: PaymentDetailsState = useAppSelector(({ paymentDetails }) => paymentDetails);
-  const dispatch: AppDispatch = useAppDispatch();
   const months: number = useAppSelector(({ paymentDetails }) => paymentDetails.months);
 
-  const [fixedTotalAmount, setFixedTotalAmount] = useState<string>('0');
-  const [fixedTotalCost, setFixedTotalCost] = useState<string>('0');
-  const [effectiveInterestRate, setEffectiveInterestRate] = useState<string>('0');
-
-  useEffect(() => {
-    if (selectedAmount) {
-      const result = calulator.Calculate(
-        loanAmount,
-        nomInterestRate,
-        selectedAmount,
-        startupFee,
-        termFee,
-      );
-      const totalPurchaseCost = Number(result.totalPurchaseCost.replace(' ', ''));
-      setEffectiveInterestRate(result.effectiveRate);
-      setFixedTotalAmount(getFixedAmount(totalPurchaseCost, 1));
-      setFixedTotalCost(getFixedAmount((totalPurchaseCost - loanAmount), 1));
-      dispatch(paymentActions.setMonths(result.months));
-    }
-  }, [dispatch, loanAmount, selectedAmount, nomInterestRate, startupFee, termFee]);
+  const {
+    fixedTotalAmount,
+    fixedTotalCost,
+    effectiveInterestRate,
+  } = useCalulate({
+    selectedAmount,
+    loanAmount,
+    nomInterestRate,
+    startupFee,
+    termFee,
+  });
 
   return (
     <>

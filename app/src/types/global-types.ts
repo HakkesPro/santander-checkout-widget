@@ -92,7 +92,7 @@ interface FeeAndRate {
  * All keys are partial.
  * Means one could only pass in only one of those keys and leave the rest as default.
  */
-type CountrySpecifics = Array<Record<string, Partial<FeeAndRate>>>
+export type CountrySpecifics = Array<Record<string, Partial<FeeAndRate>>>
 
 export interface PaymentDetailsState extends FeeAndRate {
   amountOptions: Array<AmountOption>,

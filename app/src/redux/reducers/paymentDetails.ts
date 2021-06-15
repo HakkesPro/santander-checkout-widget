@@ -1,6 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import type { PaymentDetailsState, AmountOption } from 'types/global-types';
+import type { PaymentDetailsState, AmountOption, CountrySpecifics } from 'types/global-types';
 import { intialAmountOptions } from '../initialStates';
 
 const defaultLoanAmount: number = 4222;
@@ -31,6 +31,9 @@ export const paymentSlice = createSlice({
     },
     setLoanAmount: (state, action: PayloadAction<number>) => {
       state.loanAmount = action.payload;
+    },
+    setCountrySpecifics: (state, action: PayloadAction<CountrySpecifics>) => {
+      state.countrySpecifics = action.payload;
     },
   },
 });
