@@ -90,6 +90,6 @@ const MyGrid: FC<MyGridProps> = ({
       </Grid>
     </Grid.Column>
   </Grid.Row>
-)
+);
 
 export default Body;
