@@ -53,7 +53,8 @@ export interface Theme {
   footerFontSize: string,
   borderRadius: string,
   font: string,
-  headerFontSize: string
+  headerFontSize: string,
+  raised: number
 }
 
 export enum Paths {

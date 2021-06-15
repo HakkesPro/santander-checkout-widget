@@ -37,6 +37,7 @@ export const initialTheme = () => ({
   headerFontSize: '14px',
   borderRadius: '4px',
   font: 'arial',
+  raised: 2,
 });
 
 export const initTranslations = () => ({
