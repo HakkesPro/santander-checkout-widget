@@ -81,8 +81,17 @@ interface FeeAndRate {
 
 /*
  * string will be a custom COUNTRY code.
+ * ex: {
+ *  NOR: {
+ *   nomInterestRate: 19,
+ *   termsFee: 10
+ *   startupFee: 0
+ *  }
+ * }
+ * All keys are partial.
+ * Means one could only pass in only one of those keys and leave the rest as default.
  */
-type CountrySpecifics = Array<Record<string, FeeAndRate>>
+type CountrySpecifics = Array<Record<string, Partial<FeeAndRate>>>
 
 export interface PaymentDetailsState extends FeeAndRate {
   months: number
