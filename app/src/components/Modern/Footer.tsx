@@ -20,12 +20,12 @@ const Footer:FC<Props> = ({
   const {
     months,
     selectedAmount,
-    totalCost,
+    loanAmount,
     nomInterestRate,
   }: PaymentDetailsState = useAppSelector(({ paymentDetails }) => paymentDetails);
 
   const fixedTotalAmount = getFixedAmount(selectedAmount || 0, months);
-  const fixedTotalCost = getFixedAmount(totalCost, 1);
+  const fixedTotalCost = getFixedAmount(loanAmount, 1);
 
   const resumeFontSize = `${(Number(theme.headerFontSize.split('px')[0]) - 1)}px`;
 

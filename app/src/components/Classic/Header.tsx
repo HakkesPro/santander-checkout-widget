@@ -17,17 +17,17 @@ interface Props {
 const Header:FC<Props> = ({ translations, theme }): JSX.Element => {
   const dispatch: AppDispatch = useAppDispatch();
   const amountOptions = amountOptionsFixed();
-  const productAmount: number = useAppSelector(({ paymentDetails }) => paymentDetails.productAmount);
+  const loanAmount: number = useAppSelector(({ paymentDetails }) => paymentDetails.loanAmount);
 
   const updateSelectedAmount = (e: SyntheticEvent, { value }: any): void => {
-    updatePaymentDetails(Number(value), productAmount, dispatch, paymentActions);
+    updatePaymentDetails(Number(value), loanAmount, dispatch, paymentActions);
   };
 
   const defaultValue = amountOptions[0].value;
 
   useEffect(() => {
-    updatePaymentDetails(defaultValue, productAmount, dispatch, paymentActions);
-  }, [dispatch, defaultValue, productAmount]);
+    updatePaymentDetails(defaultValue, loanAmount, dispatch, paymentActions);
+  }, [dispatch, defaultValue, loanAmount]);
 
   createStyleTag(theme);
 

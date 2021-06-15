@@ -77,8 +77,7 @@ export interface PaymentDetailsState {
   months: number
   amountOptions: Array<AmountOption>,
   selectedAmount: null | number,
-  productAmount: number,
-  totalCost: number,
+  loanAmount: number,
   nomInterestRate: number,
 }
 

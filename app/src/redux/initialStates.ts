@@ -43,5 +43,5 @@ export const initTranslations = () => ({
   ...translations[defaults.LOCALE_ID],
 });
 
-export const intialAmountOptions = (productAmount: number): Array<AmountOption> =>
-  getPaymentIntervals(productAmount);
+export const intialAmountOptions = (loanAmount: number): Array<AmountOption> =>
+  getPaymentIntervals(loanAmount);

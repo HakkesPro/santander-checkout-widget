@@ -22,7 +22,7 @@ const Selections:FC<Props> = ({ translations, theme, labelPosition }) => {
   const dispatch: AppDispatch = useAppDispatch();
 
   const months: number = useAppSelector(({ paymentDetails }) => paymentDetails.months);
-  const productAmount: number = useAppSelector(({ paymentDetails }) => paymentDetails.productAmount);
+  const loanAmount: number = useAppSelector(({ paymentDetails }) => paymentDetails.loanAmount);
 
   const monthsAlias = toPascalCase(translations.monthsAlias);
 
@@ -31,12 +31,12 @@ const Selections:FC<Props> = ({ translations, theme, labelPosition }) => {
   const defaultValue = amountOptions[0].value;
 
   const updateSelectedAmount = (e: SyntheticEvent, { value }: any): void => {
-    updatePaymentDetails(Number(value), productAmount, dispatch, paymentActions);
+    updatePaymentDetails(Number(value), loanAmount, dispatch, paymentActions);
   };
 
   useEffect(() => {
-    updatePaymentDetails(defaultValue, productAmount, dispatch, paymentActions);
-  }, [dispatch, defaultValue, productAmount]);
+    updatePaymentDetails(defaultValue, loanAmount, dispatch, paymentActions);
+  }, [dispatch, defaultValue, loanAmount]);
 
   createStyleTag(theme.borderRadius, (labelPosition === LabelPosition.RIGHT));
 

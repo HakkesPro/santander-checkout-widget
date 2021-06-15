@@ -15,11 +15,11 @@ const Body:FC<Props> = ({ translations }): JSX.Element => {
   const {
     months,
     selectedAmount,
-    totalCost,
+    loanAmount,
     nomInterestRate,
   }: PaymentDetailsState = useAppSelector(({ paymentDetails }) => paymentDetails);
   const fixedTotalAmount: string = getFixedAmount(selectedAmount || 0, months);
-  const fixedTotalCost = getFixedAmount(totalCost, 1);
+  const fixedTotalCost = getFixedAmount(loanAmount, 1);
 
   return (
     <>
