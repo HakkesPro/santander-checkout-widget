@@ -72,10 +72,10 @@ export const getPaymentParamsFromUrl: () => PaymentParams = () => {
       }
       urlPaymentDetails.countrySpecifics[prop] = {
         ...urlPaymentDetails.countrySpecifics[prop],
-        [subKey]: value,
+        [subKey]: Number(value),
       };
     } else {
-      urlPaymentDetails[prop] = value;
+      urlPaymentDetails[prop] = Number(value);
     }
   };
   setAllowedKeys(allowedKeys, addKey);
