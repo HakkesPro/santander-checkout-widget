@@ -1,7 +1,12 @@
 import type { FC } from 'react';
 import { Grid } from 'semantic-ui-react';
 import { useAppSelector } from 'redux/redux-hooks';
-import type { Translations, PaymentDetailsState } from 'types/global-types';
+import type {
+  Translations,
+  PaymentDetailsState,
+  CountrySpecifics,
+  Countries,
+} from 'types/global-types';
 import { toPascalCase } from 'utils/helpers';
 import { useCalulate } from 'utils/custom-hooks';
 
@@ -18,6 +23,21 @@ const Body:FC<Props> = ({ translations }): JSX.Element => {
     termFee,
   }: PaymentDetailsState = useAppSelector(({ paymentDetails }) => paymentDetails);
   const months: number = useAppSelector(({ paymentDetails }) => paymentDetails.months);
+  const country: Countries = useAppSelector(({ context }) => context.config.country);
+  const countrySpecifics: any = useAppSelector(({ paymentDetails }) =>
+    paymentDetails.countrySpecifics);
+
+  const mergedWithCountry = {
+    nomInterestRate,
+    termFee,
+    startupFee,
+    ...countrySpecifics
+      && countrySpecifics
+      && countrySpecifics[country]
+      && { ...countrySpecifics[country] },
+  };
+
+  console.log(mergedWithCountry);
 
   const {
     fixedTotalAmount,
@@ -26,9 +46,9 @@ const Body:FC<Props> = ({ translations }): JSX.Element => {
   } = useCalulate({
     selectedAmount,
     loanAmount,
-    nomInterestRate,
-    startupFee,
-    termFee,
+    nomInterestRate: mergedWithCountry.nomInterestRate,
+    startupFee: mergedWithCountry.startupFee,
+    termFee: mergedWithCountry.termFee,
   });
 
   return (

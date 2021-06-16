@@ -74,7 +74,7 @@ export interface AmountOption extends DropdownItemProps {
   value: number
 }
 
-interface FeeAndRate {
+export interface FeeAndRate {
   nomInterestRate: number,
   termFee: number,
   startupFee: number,
@@ -89,10 +89,11 @@ interface FeeAndRate {
  *   startupFee: 0
  *  }
  * }
- * All keys are partial.
+ * All keys in object are partial.
  * Means one could only pass in only one of those keys and leave the rest as default.
+ * Object keys, "top level" must be taken from Countries enum.
  */
-export type CountrySpecifics = Array<Record<string, Partial<FeeAndRate>>>
+export type CountrySpecifics = Partial<Record<Countries, Partial<FeeAndRate>>>
 
 export interface PaymentDetailsState extends FeeAndRate {
   amountOptions: Array<AmountOption>,
