@@ -46,6 +46,10 @@ export const getThemeFromUrl = () => {
   return urlTheme;
 };
 
+export const getPaymentParamsFromUrl = () => {
+  return {};
+};
+
 export const isIframed = () => {
   try {
     return window.self.window === window.top.window;

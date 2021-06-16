@@ -107,3 +107,11 @@ export enum LabelPosition {
   LEFT = 'left',
   RIGHT = 'right'
 }
+
+export interface PaymentParams {
+  nomInterestRate?: number,
+  termFee?: number,
+  startupFee?: number,
+  loanAmount?: number,
+  countrySpecifics?: CountrySpecifics
+}

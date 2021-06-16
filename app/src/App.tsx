@@ -1,12 +1,17 @@
 import type { FC } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppRoutes from 'components/AppRoutes';
-import { getConfigFromUrl, getThemeFromUrl } from 'utils/helpers';
+import { getConfigFromUrl, getThemeFromUrl, getPaymentParamsFromUrl } from 'utils/helpers';
 import { useAppDispatch, useAppSelector } from 'redux/redux-hooks';
 import { contextActions } from 'redux/actions';
 import translations from 'utils/translations.json';
 import type { AppDispatch } from 'redux/store';
-import type { Config, Theme, LocaleIds } from 'types/global-types';
+import type {
+  Config,
+  Theme,
+  LocaleIds,
+  PaymentParams,
+} from 'types/global-types';
 import './styles/App.scss';
 
 type ConfigParams = Partial<Config>
@@ -14,6 +19,12 @@ type ThemeParams = Partial<Theme>
 
 const urlConfig: ConfigParams = getConfigFromUrl();
 const urlTheme: ThemeParams = getThemeFromUrl();
+const paymentParams: PaymentParams = getPaymentParamsFromUrl();
+
+console.log('urlConfig');
+console.log(urlConfig);
+console.log('paymentParams');
+console.log(paymentParams);
 
 const App: FC = () => {
   const dispatch: AppDispatch = useAppDispatch();
