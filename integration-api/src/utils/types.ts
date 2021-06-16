@@ -1,5 +1,10 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
+export enum UrlPrefixes {
+  PAYMENT = 'payment',
+  THEME = 'theme'
+}
+
 export enum Mode {
   MODERN = 'modern',
   CLASSIC = 'classic'
