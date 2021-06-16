@@ -1,6 +1,6 @@
-import { initialConfig, initialTheme } from 'redux/initialStates';
-import { Countries, LocaleIds } from 'types/global-types';
-import type { AmountOption } from 'types/global-types';
+import { initialConfig, initialTheme, paymentDetailsAcceptedAsParams } from 'redux/initialStates';
+import { Countries, LocaleIds, UrlPrefixes } from 'types/global-types';
+import type { AmountOption, PaymentParams } from 'types/global-types';
 import translations from 'utils/translations.json';
 import { store } from 'redux/store';
 
@@ -19,9 +19,16 @@ const setAllowedKeys = (keys: string[], addKey: (key: string, value: string) => 
   });
 };
 
+const getAllowedKeys = (configType: () => any, prefix: null | string) => {
+  const options: any = configType(); // Setting any because of the algorithms below
+  const allowedKeys = [
+    ...Object.keys(options).map((key) => `${prefix ? `${prefix}.` : ''}${key}`),
+  ];
+  return allowedKeys;
+};
+
 export const getConfigFromUrl = () => {
-  const config: any = initialConfig(); // Setting any because of the algorithms below
-  const allowedConfigs = Object.keys(config);
+  const allowedConfigs = getAllowedKeys(initialConfig, null);
   const urlConfigs:any = {};
 
   const addKey = (key: string, value: string) => { urlConfigs[key] = value; };
@@ -31,10 +38,7 @@ export const getConfigFromUrl = () => {
 };
 
 export const getThemeFromUrl = () => {
-  const theme: any = initialTheme(); // Setting any because of the algorithms below
-  const allowedKeys = [
-    ...Object.keys(theme).map((key) => `theme.${key}`),
-  ];
+  const allowedKeys = getAllowedKeys(initialTheme, UrlPrefixes.THEME);
   const urlTheme:any = {};
 
   const addKey = (key: string, value: string) => {
@@ -46,7 +50,17 @@ export const getThemeFromUrl = () => {
   return urlTheme;
 };
 
-export const getPaymentParamsFromUrl = () => {
+export const getPaymentParamsFromUrl: () => PaymentParams = () => {
+  const allowedKeys = getAllowedKeys(paymentDetailsAcceptedAsParams, UrlPrefixes.PAYMENT);
+  const urlPaymentDetails:any = {};
+
+  const addKey = (key: string, value: string) => {
+    const prop = key.split('.')[1]; // theme.${themeProps} need to be splitted
+    urlPaymentDetails[prop] = value;
+  };
+  setAllowedKeys(allowedKeys, addKey);
+
+  console.log(urlPaymentDetails);
   return {};
 };
 

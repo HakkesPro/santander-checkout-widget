@@ -1,24 +1,11 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PaymentDetailsState } from 'types/global-types';
-import { intialAmountOptions } from '../initialStates';
-
-const defaultLoanAmount: number = 0;
-
-const initialState: PaymentDetailsState = {
-  amountOptions: intialAmountOptions(defaultLoanAmount),
-  months: 0,
-  selectedAmount: null,
-  loanAmount: defaultLoanAmount,
-  nomInterestRate: 21.00,
-  termFee: 50,
-  startupFee: 0,
-  countrySpecifics: null,
-};
+import { initialPaymentDetails } from 'redux/initialStates';
 
 export const paymentSlice = createSlice({
   name: 'PaymentDetails',
-  initialState,
+  initialState: initialPaymentDetails(),
   reducers: {
     setMonths: (state, action: PayloadAction<PaymentDetailsState['months']>) => {
       state.months = action.payload;

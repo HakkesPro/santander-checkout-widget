@@ -4,6 +4,7 @@ import {
   Measures,
   Countries,
   LabelPosition,
+  PaymentDetailsState,
 } from 'types/global-types';
 import translations from 'utils/translations.json';
 import type { AmountOption } from 'types/global-types';
@@ -46,3 +47,18 @@ export const initTranslations = () => ({
 
 export const intialAmountOptions = (loanAmount: number): Array<AmountOption> =>
   getPaymentIntervals(loanAmount);
+
+const defaultLoanAmount: number = 0;
+export const paymentDetailsAcceptedAsParams = () => ({
+  loanAmount: defaultLoanAmount,
+  nomInterestRate: 21.00,
+  termFee: 50,
+  startupFee: 0,
+});
+export const initialPaymentDetails: () => PaymentDetailsState = () => ({
+  amountOptions: intialAmountOptions(defaultLoanAmount),
+  months: 0,
+  selectedAmount: null,
+  ...paymentDetailsAcceptedAsParams(),
+  countrySpecifics: null,
+});

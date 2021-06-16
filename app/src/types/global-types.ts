@@ -112,6 +112,10 @@ export interface PaymentParams {
   nomInterestRate?: number,
   termFee?: number,
   startupFee?: number,
-  loanAmount?: number,
-  countrySpecifics?: CountrySpecifics
+  loanAmount?: number
+}
+
+export enum UrlPrefixes {
+  THEME = 'theme',
+  PAYMENT = 'payment'
 }
