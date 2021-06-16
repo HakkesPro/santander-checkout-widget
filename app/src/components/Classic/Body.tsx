@@ -37,8 +37,6 @@ const Body:FC<Props> = ({ translations }): JSX.Element => {
       && { ...countrySpecifics[country] },
   };
 
-  console.log(mergedWithCountry);
-
   const {
     fixedTotalAmount,
     fixedTotalCost,

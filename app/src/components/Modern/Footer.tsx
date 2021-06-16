@@ -5,6 +5,7 @@ import type {
   Theme,
   Translations,
   PaymentDetailsState,
+  Countries,
 } from 'types/global-types';
 import { useCalulate } from 'utils/custom-hooks';
 
@@ -23,9 +24,21 @@ const Footer:FC<Props> = ({
     nomInterestRate,
     termFee,
     startupFee,
+    countrySpecifics,
   }: PaymentDetailsState = useAppSelector(({ paymentDetails }) => paymentDetails);
+  const country: Countries = useAppSelector(({ context }) => context.config.country);
 
   const resumeFontSize = `${(Number(theme.headerFontSize.split('px')[0]) - 1)}px`;
+
+  const mergedWithCountry = {
+    nomInterestRate,
+    termFee,
+    startupFee,
+    ...countrySpecifics
+      && countrySpecifics
+      && countrySpecifics[country]
+      && { ...countrySpecifics[country] },
+  };
 
   const {
     fixedTotalAmount,
@@ -34,9 +47,9 @@ const Footer:FC<Props> = ({
   } = useCalulate({
     selectedAmount,
     loanAmount,
-    nomInterestRate,
-    startupFee,
-    termFee,
+    nomInterestRate: mergedWithCountry.nomInterestRate,
+    startupFee: mergedWithCountry.startupFee,
+    termFee: mergedWithCountry.termFee,
   });
 
   return (
