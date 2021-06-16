@@ -52,16 +52,34 @@ export const getThemeFromUrl = () => {
 
 export const getPaymentParamsFromUrl: () => PaymentParams = () => {
   const allowedKeys = getAllowedKeys(paymentDetailsAcceptedAsParams, UrlPrefixes.PAYMENT);
-  const urlPaymentDetails:any = {};
+  const urlPaymentDetails: any = {};
+
+  // This will add all url params prefixed with payment.[country].key=value as allowedKeys
+  const allowedCopy = [...allowedKeys];
+  Object.values(Countries).forEach((country) => {
+    allowedCopy.forEach((key) => {
+      allowedKeys.push(`${UrlPrefixes.PAYMENT}.${country}${key.replace(UrlPrefixes.PAYMENT, '')}`);
+    });
+  });
 
   const addKey = (key: string, value: string) => {
-    const prop = key.split('.')[1]; // theme.${themeProps} need to be splitted
-    urlPaymentDetails[prop] = value;
+    const splitted = key.split('.');
+    const prop = splitted[1];
+    if (splitted.length === 3) {
+      const subKey = splitted[2];
+      if (!urlPaymentDetails.countrySpecifics) {
+        urlPaymentDetails.countrySpecifics = {};
+      }
+      urlPaymentDetails.countrySpecifics[prop] = {
+        ...urlPaymentDetails.countrySpecifics[prop],
+        [subKey]: value,
+      };
+    } else {
+      urlPaymentDetails[prop] = value;
+    }
   };
   setAllowedKeys(allowedKeys, addKey);
-
-  console.log(urlPaymentDetails);
-  return {};
+  return urlPaymentDetails;
 };
 
 export const isIframed = () => {

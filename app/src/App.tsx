@@ -21,8 +21,6 @@ const urlConfig: ConfigParams = getConfigFromUrl();
 const urlTheme: ThemeParams = getThemeFromUrl();
 const paymentParams: PaymentParams = getPaymentParamsFromUrl();
 
-console.log('urlConfig');
-console.log(urlConfig);
 console.log('paymentParams');
 console.log(paymentParams);
 

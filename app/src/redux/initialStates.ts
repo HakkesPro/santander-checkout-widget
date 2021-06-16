@@ -4,10 +4,9 @@ import {
   Measures,
   Countries,
   LabelPosition,
-  PaymentDetailsState,
 } from 'types/global-types';
 import translations from 'utils/translations.json';
-import type { AmountOption } from 'types/global-types';
+import type { AmountOption, PaymentDetailsState } from 'types/global-types';
 import { getPaymentIntervals } from 'utils/payment-helpers';
 
 const defaults = {
