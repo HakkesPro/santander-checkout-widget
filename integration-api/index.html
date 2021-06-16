@@ -21,18 +21,21 @@
 const checkout_widget = new window.SANTANDER_CHECKOUT_WIDGET(
   'checkout-widget-container',
   {
-    containerWidth: '430px',
-    containerHeight: '150px',
-    effectiveInterestRate: 48.90,
-    heightWithDropdown: '243px',
-    mode: 'modern',
-    labelPosition: 'right',
-    theme: {
-      border: 'transparent',
-      background: '#f1f1f1',
-      text: '#5454545',
-      footerFontSize: '12px',
-      borderRadius: '20px'
+    environment: 'development',
+    mode: 'classic',
+    paymentDetails: {
+      nomInterestRate: 5,
+      termFee: 8,
+      countrySpecifics: {
+        SWE: {
+          nomInterestRate: 15,
+          termFee: 111,
+        },
+        DKK: {
+          nomInterestRate: 11,
+          termFee: 13,
+        },
+      }
     }
   }
 );

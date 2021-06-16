@@ -62,3 +62,28 @@ export interface ApiConfig extends Config {
   heightWithDropdown?: string,
   environment: environment
 }
+
+export interface FeeAndRate {
+  nomInterestRate?: number,
+  termFee?: number,
+  startupFee?: number,
+}
+/*
+ * string will be a custom COUNTRY code.
+ * ex: {
+ *  NOR: {
+ *   nomInterestRate: 19,
+ *   termFee: 10
+ *   startupFee: 0
+ *  }
+ * }
+ * All keys in object are partial.
+ * Means one could only pass in only one of those keys and leave the rest as default.
+ * Object keys, "top level" must be taken from Countries enum.
+ */
+export type CountrySpecifics = Partial<Record<Countries, FeeAndRate>>
+
+export interface PaymentDetails extends FeeAndRate {
+  loanAmount: number,
+  countrySpecifics: CountrySpecifics
+}

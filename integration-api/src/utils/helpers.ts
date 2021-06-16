@@ -1,4 +1,10 @@
-import type { ApiConfig, Theme } from './types';
+import type {
+  ApiConfig,
+  Theme,
+  PaymentDetails,
+  FeeAndRate,
+} from './types';
+import { Countries } from './types';
 
 export const x = {};
 
@@ -17,8 +23,35 @@ export const serialize = (
   return str.join('&');
 };
 
-export const buildUrl = (origin: string, config: Partial<ApiConfig>, theme: Partial<Theme>) => {
+const getPaymentParams = (
+  countrySpecifics: PaymentDetails['countrySpecifics'],
+  paymentDetails: Partial<PaymentDetails>,
+) => {
+  const paymentDetailsStripped: Partial<Omit<PaymentDetails, 'countrySpecifics'>> = {
+    ...paymentDetails,
+  };
+  const countrySpecificParams = Object.entries(countrySpecifics)
+    .map((
+      obj: [ keyof typeof Countries | string, Partial<FeeAndRate> ],
+    ) => serialize(obj[1], obj[0]));
+  console.log(countrySpecificParams);
+  return serialize(paymentDetailsStripped, 'payment');
+};
+
+export const buildUrl = (
+  origin: string,
+  config: Partial<ApiConfig>,
+  theme: Partial<Theme>,
+  paymentDetails: Partial<PaymentDetails>,
+) => {
   const configParams = serialize(config);
   const themeParams = serialize(theme, 'theme');
-  return `${origin}?${configParams}${themeParams ? `&${themeParams}` : ''}`;
+  const countrySpecifics: PaymentDetails['countrySpecifics'] = {
+    ...paymentDetails
+      && paymentDetails.countrySpecifics,
+  };
+  // eslint-disable-next-line no-param-reassign
+  delete paymentDetails.countrySpecifics;
+  const paymentParams: string = getPaymentParams(countrySpecifics, paymentDetails);
+  return `${origin}?${configParams}${themeParams ? `&${themeParams}` : ''}${paymentParams ? `&${paymentParams}` : ''}`;
 };

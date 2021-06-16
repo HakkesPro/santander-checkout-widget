@@ -1,9 +1,10 @@
-import type { ApiConfig, Theme } from './utils/types';
+import type { ApiConfig, Theme, PaymentDetails } from './utils/types';
 import { environment, hostedUrls } from './utils/types';
 import { buildUrl } from './utils/helpers';
 
 interface Configs extends Partial<ApiConfig> {
-  theme?: Partial<Theme>
+  theme?: Partial<Theme>,
+  paymentDetails?: Partial<PaymentDetails>
 }
 
 const SANTANDER_CHECKOUT_WIDGET = class {
@@ -18,12 +19,14 @@ const SANTANDER_CHECKOUT_WIDGET = class {
   constructor (elId: string, configs: Configs) {
     const config = { ...configs };
     const theme = { ...configs.theme && { ...configs.theme } };
+    const paymentDetails = { ...configs.paymentDetails && { ...configs.paymentDetails } };
     delete config.theme;
+    delete config.paymentDetails;
 
     this.elId = elId;
     this.config = config;
     this.hostedOrigin = this.setEnvironment();
-    this.iframeUrl = buildUrl(this.hostedOrigin, config, theme);
+    this.iframeUrl = buildUrl(this.hostedOrigin, config, theme, paymentDetails);
     this.setFrameAndContainerMeasures({
       containerHeight:
           this.config.heightWithDropdown
