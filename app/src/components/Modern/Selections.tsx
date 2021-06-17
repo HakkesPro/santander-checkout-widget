@@ -6,6 +6,7 @@ import type { AppDispatch } from 'redux/store';
 import type {
   Translations,
   Theme,
+  AmountOption,
 } from 'types/global-types';
 import { LabelPosition } from 'types/global-types';
 import { amountOptionsFixed, toPascalCase } from 'utils/helpers';
@@ -14,17 +15,22 @@ import { paymentActions } from 'redux/actions';
 interface Props {
   translations: Translations,
   theme: Theme,
-  labelPosition: LabelPosition
+  labelPosition: LabelPosition,
+  amountOptions: Array<AmountOption>
 }
 
-const Selections:FC<Props> = ({ translations, theme, labelPosition }) => {
+const Selections:FC<Props> = ({
+  translations,
+  theme,
+  labelPosition,
+  amountOptions: a,
+}) => {
   const dispatch: AppDispatch = useAppDispatch();
 
+  const amountOptions = amountOptionsFixed(a);
   const months: number = useAppSelector(({ paymentDetails }) => paymentDetails.months);
 
   const monthsAlias = toPascalCase(translations.monthsAlias);
-
-  const amountOptions = amountOptionsFixed();
 
   const defaultValue = amountOptions[0].value;
 

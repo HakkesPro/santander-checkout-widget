@@ -108,6 +108,14 @@ export enum LabelPosition {
   RIGHT = 'right'
 }
 
+export enum PaymentParamsEnum {
+  NOM_INTEREST_RATE = 'nomInterestRate',
+  TERM_FEE = 'termFee',
+  STARTUP_FEE = 'startupFee',
+  LOAN_AMOUNT = 'loanAmount',
+  COUNTRY_SPECIFICS = 'countrySpecifics'
+}
+
 export interface PaymentParams {
   nomInterestRate?: number,
   termFee?: number,

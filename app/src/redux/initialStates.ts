@@ -6,7 +6,7 @@ import {
   LabelPosition,
 } from 'types/global-types';
 import translations from 'utils/translations.json';
-import type { AmountOption, PaymentDetailsState } from 'types/global-types';
+import type { PaymentDetailsState } from 'types/global-types';
 import { getPaymentIntervals } from 'utils/payment-helpers';
 
 const defaults = {
@@ -18,7 +18,6 @@ const defaults = {
 export const initialConfig = () => ({
   mode: Mode.MODERN,
   displayLogo: true,
-  // eslint-disable-next-line max-len
   logoUrl: 'https://static.paymentiq.io/santander.svg',
   logoHeight: '25px',
   localeId: defaults.LOCALE_ID,
@@ -44,20 +43,17 @@ export const initTranslations = () => ({
   ...translations[defaults.LOCALE_ID],
 });
 
-export const intialAmountOptions = (loanAmount: number): Array<AmountOption> =>
-  getPaymentIntervals(loanAmount);
-
 const defaultLoanAmount: number = 0;
 export const paymentDetailsAcceptedAsParams = () => ({
   loanAmount: defaultLoanAmount,
   nomInterestRate: 21.00,
   termFee: 50,
   startupFee: 0,
+  countrySpecifics: null,
 });
 export const initialPaymentDetails: () => PaymentDetailsState = () => ({
-  amountOptions: intialAmountOptions(defaultLoanAmount),
+  amountOptions: getPaymentIntervals(defaultLoanAmount),
   months: 0,
   selectedAmount: null,
   ...paymentDetailsAcceptedAsParams(),
-  countrySpecifics: null,
 });

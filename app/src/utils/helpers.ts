@@ -1,8 +1,14 @@
 import { initialConfig, initialTheme, paymentDetailsAcceptedAsParams } from 'redux/initialStates';
-import { Countries, LocaleIds, UrlPrefixes } from 'types/global-types';
+import {
+  Countries,
+  LocaleIds,
+  UrlPrefixes,
+  PaymentParamsEnum,
+} from 'types/global-types';
 import type { AmountOption, PaymentParams } from 'types/global-types';
 import translations from 'utils/translations.json';
 import { store } from 'redux/store';
+import type { AppDispatch } from 'redux/store';
 
 export const parseQueryString = (key: string): string | null =>
   new URL(window.location.href).searchParams.get(key);
@@ -129,9 +135,10 @@ export const getCurrencyCodeByCountry = (country: Countries) => {
   }
 };
 
-export const amountOptionsFixed = (): Array<AmountOption> => {
-  const { paymentDetails, context } = store.getState();
-  return paymentDetails.amountOptions.map((option) => ({
+type AmountOptionsFixed = (amountOptions: Array<AmountOption>) => Array<AmountOption>
+export const amountOptionsFixed: AmountOptionsFixed = (amountOptions) => {
+  const { context } = store.getState();
+  return amountOptions.map((option) => ({
     ...option,
     text: amountWithCode(
       context.config.localeId,
@@ -156,4 +163,38 @@ export const getFixedAmount = (selectedAmount: number, months: number): string =
     getCurrencyCodeByCountry(context.config.country),
     getTotalAmount(selectedAmount, months),
   );
+};
+
+export const setPaymentDetails = (
+  dispatch: AppDispatch,
+  paymentParams: PaymentParams,
+  paymentActions: any,
+): void => {
+  const acceptedKeys = Object.keys(paymentDetailsAcceptedAsParams());
+  const paymentEntries = Object.entries(paymentParams);
+  paymentEntries.forEach((entrie) => {
+    const key: string = entrie[0];
+    const value: number = entrie[1];
+    if (acceptedKeys.includes(key)) {
+      switch (key) {
+        case PaymentParamsEnum.NOM_INTEREST_RATE:
+          dispatch(paymentActions.setNomInterestRate(value));
+          break;
+        case PaymentParamsEnum.TERM_FEE:
+          dispatch(paymentActions.setTermFee(value));
+          break;
+        case PaymentParamsEnum.STARTUP_FEE:
+          dispatch(paymentActions.setStartupFee(value));
+          break;
+        case PaymentParamsEnum.LOAN_AMOUNT:
+          dispatch(paymentActions.setLoanAmount(value));
+          break;
+        case PaymentParamsEnum.COUNTRY_SPECIFICS:
+          dispatch(paymentActions.setCountrySpecifics(value));
+          break;
+        default:
+          break;
+      }
+    }
+  });
 };

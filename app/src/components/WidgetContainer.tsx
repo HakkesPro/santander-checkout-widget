@@ -1,8 +1,11 @@
 import type { FC, ReactNode } from 'react';
-import { useAppSelector } from 'redux/redux-hooks';
-import type { Theme, Config } from 'types/global-types';
+import { useAppSelector, useAppDispatch } from 'redux/redux-hooks';
+import type { Theme, Config, PaymentDetailsState } from 'types/global-types';
 import { Mode } from 'types/global-types';
 import { isIframed } from 'utils/helpers';
+import { paymentActions } from 'redux/actions';
+import type { AppDispatch } from 'redux/store';
+import { getPaymentIntervals } from 'utils/payment-helpers';
 
 const getBoxShadow = (raised: number) => {
   const boxShadowOne = '0 1px 2px 0 rgb(34 36 38 / 15%)';
@@ -35,8 +38,13 @@ interface Props {
 }
 
 const WidgetContainer: FC<Props> = ({ children, id }) => {
+  const dispatch: AppDispatch = useAppDispatch();
   const theme: Theme = useAppSelector(({ context }) => context.theme);
   const config: Config = useAppSelector(({ context }) => context.config);
+  const loanAmount: PaymentDetailsState['loanAmount'] = useAppSelector(({ paymentDetails }) =>
+    paymentDetails.loanAmount);
+
+  dispatch(paymentActions.setAmountOptions(getPaymentIntervals(loanAmount)));
 
   return (
     <section id={id} style={sectionStyles(theme, config)}>

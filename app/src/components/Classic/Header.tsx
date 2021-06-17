@@ -2,7 +2,7 @@ import type { FC, SyntheticEvent } from 'react';
 import { useEffect } from 'react';
 import { Grid, Dropdown } from 'semantic-ui-react';
 import Logo from '../Logo';
-import type { Translations, Theme } from 'types/global-types';
+import type { Translations, Theme, AmountOption } from 'types/global-types';
 import type { AppDispatch } from 'redux/store';
 import { useAppDispatch } from 'redux/redux-hooks';
 import { amountOptionsFixed } from 'utils/helpers';
@@ -10,12 +10,13 @@ import { paymentActions } from 'redux/actions';
 
 interface Props {
   translations: Translations,
-  theme: Theme
+  theme: Theme,
+  amountOptions: Array<AmountOption>
 }
 
-const Header:FC<Props> = ({ translations, theme }): JSX.Element => {
+const Header:FC<Props> = ({ translations, theme, amountOptions: a }): JSX.Element => {
   const dispatch: AppDispatch = useAppDispatch();
-  const amountOptions = amountOptionsFixed();
+  const amountOptions = amountOptionsFixed(a);
 
   const updateSelectedAmount = (e: SyntheticEvent, { value }: any): void => {
     dispatch(paymentActions.setSelectedAmount(Number(value)));

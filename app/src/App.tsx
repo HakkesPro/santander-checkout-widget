@@ -1,9 +1,14 @@
 import type { FC } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppRoutes from 'components/AppRoutes';
-import { getConfigFromUrl, getThemeFromUrl, getPaymentParamsFromUrl } from 'utils/helpers';
+import {
+  getConfigFromUrl,
+  getThemeFromUrl,
+  getPaymentParamsFromUrl,
+  setPaymentDetails,
+} from 'utils/helpers';
 import { useAppDispatch, useAppSelector } from 'redux/redux-hooks';
-import { contextActions } from 'redux/actions';
+import { contextActions, paymentActions } from 'redux/actions';
 import translations from 'utils/translations.json';
 import type { AppDispatch } from 'redux/store';
 import type {
@@ -20,9 +25,6 @@ type ThemeParams = Partial<Theme>
 const urlConfig: ConfigParams = getConfigFromUrl();
 const urlTheme: ThemeParams = getThemeFromUrl();
 const paymentParams: PaymentParams = getPaymentParamsFromUrl();
-
-console.log('paymentParams');
-console.log(paymentParams);
 
 const App: FC = () => {
   const dispatch: AppDispatch = useAppDispatch();
@@ -44,10 +46,10 @@ const setStore: SetStore = (dispatch, defaultLocaleId) => {
   setTranslations(dispatch, urlConfig.localeId, defaultLocaleId);
 };
 
-type SetConfigsFromUrl = (d: AppDispatch) => void
-const setUrlConfigs: SetConfigsFromUrl = (dispatch) => {
+const setUrlConfigs = (dispatch: AppDispatch): void => {
   dispatch(contextActions.setConfig(urlConfig));
   dispatch(contextActions.setTheme(urlTheme));
+  setPaymentDetails(dispatch, paymentParams, paymentActions);
 };
 
 type SetTranslations = (d: AppDispatch, u: undefined | LocaleIds, s: LocaleIds) => void

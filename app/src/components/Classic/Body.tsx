@@ -4,7 +4,6 @@ import { useAppSelector } from 'redux/redux-hooks';
 import type {
   Translations,
   PaymentDetailsState,
-  CountrySpecifics,
   Countries,
 } from 'types/global-types';
 import { toPascalCase } from 'utils/helpers';
