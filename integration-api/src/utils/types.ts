@@ -64,7 +64,7 @@ export enum environment {
 }
 
 export interface ApiConfig extends Config {
-  heightWithDropdown?: string,
+  iframeHeight?: string,
   environment: environment
 }
 

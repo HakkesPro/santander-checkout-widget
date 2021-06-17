@@ -29,12 +29,12 @@ const SANTANDER_CHECKOUT_WIDGET = class {
     this.iframeUrl = buildUrl(this.hostedOrigin, config, theme, paymentDetails);
     this.setFrameAndContainerMeasures({
       containerHeight:
-          this.config.heightWithDropdown
+          this.config.iframeHeight
         || this.config.containerHeight
         || this.containerHeight,
       containerWidth: this.config.containerWidth || this.containerWidth,
     },
-    Boolean(this.config.heightWithDropdown));
+    Boolean(this.config.iframeHeight));
     this.buildIframe();
   }
 
