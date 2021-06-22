@@ -15,11 +15,12 @@ const getBoxShadow = (raised: number) => {
 
 const sectionStyles = (theme: Theme, config: Config) => {
   const raised = Number(theme.raised) ? getBoxShadow(Number(theme.raised)) : '';
+  const width = Number(theme.raised) > 0 ? '98.5vw' : '99vw';
   return {
     maxHeight: config.containerHeight,
     maxWidth: config.containerWidth,
     height: '100vh',
-    width: '100vw',
+    width,
     border: '1px solid',
     borderColor: theme.border,
     margin: isIframed() ? '15px' : '3px',
