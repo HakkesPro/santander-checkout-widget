@@ -52,8 +52,7 @@ const SANTANDER_CHECKOUT_WIDGET = class {
     iframe.src = this.iframeUrl;
     iframe.id = this.iframeId;
     iframe.style.height = this.containerHeight;
-    iframe.style.maxWidth = this.containerWidth;
-    iframe.style.width = '100%';
+    iframe.style.width = this.containerWidth;
     iframe.style.border = '0';
     iframe.style.overflow = 'hidden';
     iframe.style.position = 'absolute';
@@ -64,7 +63,8 @@ const SANTANDER_CHECKOUT_WIDGET = class {
       container.style.position = 'relative';
       container.style.display = 'inline-block';
       container.style.height = this.containerHeight;
-      container.style.width = this.containerWidth;
+      container.style.maxWidth = this.containerWidth;
+      container.style.width = '100%';
     }
   }
 

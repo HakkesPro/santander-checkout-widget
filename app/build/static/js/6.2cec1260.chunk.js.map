@@ -1,1 +1,0 @@
-{"version":3,"sources":["pages/Config.tsx"],"names":["Config"],"mappings":"gKASeA,UAPG,WAEhB,OACE,6BAFU","file":"static/js/6.2cec1260.chunk.js","sourcesContent":["import type { FC } from 'react';\n\nconst Config:FC = () => {\n  const txt = 'Config page';\n  return (\n    <h1>{txt}</h1>\n  );\n};\n\nexport default Config;\n"],"sourceRoot":""}
